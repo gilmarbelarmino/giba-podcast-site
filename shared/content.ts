@@ -175,6 +175,32 @@ export const DEFAULT_CONTENT: SiteContent = {
       featured: true,
     },
     {
+      id: "corte-faculdade-paraguai",
+      title: "Como escolher uma faculdade de Medicina no Paraguai?",
+      guest: "Dra. Queli Meireles",
+      date: "2026-11-12",
+      duration: "Corte",
+      category: "Esporte e Qualidade de Vida",
+      youtubeId: "DzDodgoV6-g",
+      description:
+        "Quais critérios avaliar antes de escolher onde estudar Medicina no Paraguai: estrutura da faculdade, laboratórios, salas climatizadas, documentação e referências de quem já estudou na instituição.",
+      type: "Corte",
+      featured: false,
+    },
+    {
+      id: "corte-como-passar-revalida",
+      title: "Como passar no Revalida? Dra. Queli conta sua trajetória",
+      guest: "Dra. Queli Meireles",
+      date: "2026-11-09",
+      duration: "Corte",
+      category: "Esporte e Qualidade de Vida",
+      youtubeId: "_TjWFs-ZnjM",
+      description:
+        "Da formação em enfermagem à decisão de cursar Medicina no Paraguai: como pesquisou a faculdade, conciliou os estudos com a família e se preparou para a segunda fase do Revalida.",
+      type: "Corte",
+      featured: false,
+    },
+    {
       id: "corte-queli",
       title: "Dra. Queli Meirelles: foco, fé e aprovação no Revalida",
       guest: "Dra. Queli Meireles",
