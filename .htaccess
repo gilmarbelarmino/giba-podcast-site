@@ -1,7 +1,12 @@
-﻿DirectoryIndex index.html
+DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Redireciona gibapodcast.com.br (sem www) para https://www.gibapodcast.com.br
+  RewriteCond %{HTTP_HOST} ^gibapodcast\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://www.gibapodcast.com.br/$1 [L,R=301]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
