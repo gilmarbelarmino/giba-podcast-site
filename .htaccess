@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Rota raiz -> build-publico/index.html
+  RewriteRule ^$ build-publico/index.html [L]
+
+  # Se o arquivo existir dentro de build-publico/, sirva-o diretamente
+  RewriteCond %{DOCUMENT_ROOT}/build-publico/%{REQUEST_URI} -f
+  RewriteRule ^(.*)$ build-publico/$1 [L]
+
+  # Fallback SPA para rotas do React (ex.: /admin)
+  RewriteCond %{REQUEST_URI} !^/build-publico/
+  RewriteRule . build-publico/index.html [L]
+</IfModule>
