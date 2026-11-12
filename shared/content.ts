@@ -8,7 +8,7 @@
  * Para trocar um texto rápido sem abrir o painel, edite os valores abaixo.
  */
 
-export type EpisodeType = "Episódio" | "Corte" | "Ao vivo";
+export type EpisodeType = "Episódio" | "Corte" | "Short" | "Ao vivo";
 
 export type Episode = {
   id: string;
@@ -166,7 +166,7 @@ export const DEFAULT_CONTENT: SiteContent = {
       title: "Como passar no Revalida? Dra. Queli conta sua trajetória",
       guest: "Dra. Queli Meireles",
       date: "2026-11-09",
-      duration: "Episódio completo",
+      duration: "Episódio em destaque",
       category: "Esporte e Qualidade de Vida",
       youtubeId: "_TjWFs-ZnjM",
       description:
@@ -201,29 +201,16 @@ export const DEFAULT_CONTENT: SiteContent = {
       featured: false,
     },
     {
-      id: "corte-queli",
-      title: "Dra. Queli Meirelles: foco, fé e aprovação no Revalida",
-      guest: "Dra. Queli Meireles",
-      date: "2026-11-03",
-      duration: "Corte",
-      category: "Esporte e Qualidade de Vida",
-      youtubeId: "JomldqmgpQQ",
-      description:
-        "Os bastidores da jornada de medicina no Paraguai até a aprovação no Revalida, com dicas práticas para quem está no mesmo caminho.",
-      type: "Corte",
-      featured: false,
-    },
-    {
       id: "corte-enfermeira",
-      title: "De enfermeira a médica: escolhas, desafios e conquistas",
+      title: "De enfermeira a médica: uma trajetória de fé, família e aprovação no Revalida",
       guest: "Dra. Queli Meireles",
       date: "2026-11-03",
-      duration: "Corte",
+      duration: "Short",
       category: "Esporte e Qualidade de Vida",
       youtubeId: "19SQF3WkYdc",
       description:
         "Uma trajetória de recomeço: como conciliar família, trabalho e estudos até conquistar o registro profissional no Brasil.",
-      type: "Corte",
+      type: "Short",
       featured: false,
     },
     {
@@ -231,77 +218,51 @@ export const DEFAULT_CONTENT: SiteContent = {
       title: "Toda conquista tem uma história que merece ser ouvida",
       guest: "Gilmar Belarmino",
       date: "2026-10-30",
-      duration: "Teaser",
+      duration: "Short",
       category: "Vida Real",
       youtubeId: "wFLv_Y53VaU",
       description:
         "O convite do GIBA Podcast para quem tem uma história, um propósito e conhecimento para compartilhar.",
-      type: "Corte",
+      type: "Short",
       featured: false,
     },
     {
       id: "corte-identificacao",
-      title: "“Eu também estou passando por isso”",
+      title: "Sabe quando você ouve uma história e pensa: “Eu também estou passando por isso”?",
       guest: "Gilmar Belarmino",
       date: "2026-10-27",
-      duration: "Corte",
+      duration: "Short",
       category: "Vida Real",
       youtubeId: "CZzbhF7s85Y",
       description:
         "Por que as histórias reais conectam tanto: identificação, aprendizado e novas possibilidades.",
-      type: "Corte",
+      type: "Short",
       featured: false,
     },
     {
       id: "corte-cursos",
-      title: "Otimização de cursos: a saída tecnológica mais procurada pelas empresas",
-      guest: "GIBA Podcast",
+      title: "Otimização de cursos para as empresas hoje: a saída tecnológica mais procurada",
+      guest: "GIBA Podcast · CETUSG",
       date: "2026-10-22",
-      duration: "Corte",
+      duration: "Short",
       category: "Tecnologia",
       youtubeId: "fns68QLbGwQ",
       description:
         "Como tecnologia e treinamento corporativo se encontram para acelerar resultados dentro das empresas.",
-      type: "Corte",
-      featured: false,
-    },
-    {
-      id: "corte-treinamento",
-      title: "Mais um dia de treinamento no estúdio",
-      guest: "GIBA Podcast",
-      date: "2026-10-22",
-      duration: "Bastidores",
-      category: "Esporte e Qualidade de Vida",
-      youtubeId: "b_5g-DnLdCA",
-      description:
-        "Os bastidores da produção e o clima de aprendizado que antecede cada gravação.",
-      type: "Corte",
-      featured: false,
-    },
-    {
-      id: "corte-politica",
-      title: "Não discuta política na família: vai dar ruim",
-      guest: "Gilmar Belarmino",
-      date: "2026-10-22",
-      duration: "Corte",
-      category: "Vida Real",
-      youtubeId: "MbhAMTgJ8zY",
-      description:
-        "Um recorte leve sobre convivência, opinião e o que realmente vale a pena levar para a mesa de domingo.",
-      type: "Corte",
+      type: "Short",
       featured: false,
     },
     {
       id: "live-semanal",
-      title: "Como passar no Revalida? Dra. Queli conta sua trajetória",
+      title: "Dra. Queli Meirelles: foco, fé e aprovação no Revalida",
       guest: "Dra. Queli Meireles",
-      date: "2026-11-09",
+      date: "2026-11-03",
       duration: "Ao vivo",
-      category: "Vida Real",
-      youtubeId: "_TjWFs-ZnjM",
+      category: "Esporte e Qualidade de Vida",
+      youtubeId: "JomldqmgpQQ",
       thumbnail: "/assets/capa-queli-live.png",
       description:
-        "De enfermeira a médica: os critérios para escolher a faculdade no Paraguai, a rotina de estudos, os desafios da segunda fase do Revalida e o papel da família e da fé nessa caminhada.",
+        "Bate-papo completo ao vivo: os detalhes da trajetória na faculdade de Medicina no Paraguai e toda a jornada de estudos até alcançar a aprovação no Revalida.",
       type: "Ao vivo",
       featured: false,
     },

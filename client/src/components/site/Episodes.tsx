@@ -18,7 +18,7 @@ import {
 } from "@shared/content";
 import { Reveal, SectionHeading, useSpotlight } from "./primitives";
 
-const FILTERS = ["Todos", "Episódio", "Corte", "Ao vivo"] as const;
+const FILTERS = ["Todos", "Episódio", "Corte", "Short", "Ao vivo"] as const;
 type Filter = (typeof FILTERS)[number];
 
 function Thumb({ episode, className }: { episode: Episode; className?: string }) {
@@ -58,7 +58,7 @@ function Thumb({ episode, className }: { episode: Episode; className?: string })
 }
 
 function TypeBadge({ episode }: { episode: Episode }) {
-  const Icon = episode.type === "Ao vivo" ? Radio : episode.type === "Corte" ? Scissors : Play;
+  const Icon = episode.type === "Ao vivo" ? Radio : episode.type === "Corte" || episode.type === "Short" ? Scissors : Play;
   return (
     <span className="chip border-white/20 bg-black/60 backdrop-blur">
       <Icon className="size-3 text-brand" aria-hidden="true" />
@@ -126,7 +126,11 @@ function PlayerModal({ episode, onClose }: { episode: Episode; onClose: () => vo
             {formatEpisodeDate(episode.date)}
           </span>
           <a
-            href={`https://www.youtube.com/watch?v=${episode.youtubeId}`}
+            href={
+              episode.type === "Short"
+                ? `https://www.youtube.com/shorts/${episode.youtubeId}`
+                : `https://www.youtube.com/watch?v=${episode.youtubeId}`
+            }
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-brand hover:text-brand-soft"
