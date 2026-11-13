@@ -162,6 +162,19 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
   episodes: [
     {
+      id: "ep-thiago-campoi",
+      title: "De pioneiro do bossaball a dono de escola de inglês: a trajetória de Thiago Campoi",
+      guest: "Thiago Campoi",
+      date: "2026-11-13",
+      duration: "Último episódio",
+      category: "Vida Real",
+      youtubeId: "5CzKRktl8_U",
+      description:
+        "Ex-atleta e pioneiro do bossaball no Brasil, Thiago Campoi rodou o mundo jogando, aprendeu inglês na prática, viveu intercâmbio na Austrália e transformou um convite para dar aulas na compra da sua própria unidade da IW English School Santo Eduardo.",
+      type: "Episódio",
+      featured: true,
+    },
+    {
       id: "ep-revalida",
       title: "Como passar no Revalida? Dra. Queli conta sua trajetória",
       guest: "Dra. Queli Meireles",
@@ -172,7 +185,20 @@ export const DEFAULT_CONTENT: SiteContent = {
       description:
         "De enfermeira a médica: os critérios para escolher a faculdade no Paraguai, a rotina de estudos, os desafios da segunda fase do Revalida e o papel da família e da fé nessa caminhada.",
       type: "Episódio",
-      featured: true,
+      featured: false,
+    },
+    {
+      id: "corte-thiago-campoi",
+      title: "De pioneiro do bossaball a dono de escola de inglês: a trajetória de Thiago Campoi",
+      guest: "Thiago Campoi",
+      date: "2026-11-13",
+      duration: "Corte",
+      category: "Vida Real",
+      youtubeId: "5CzKRktl8_U",
+      description:
+        "Como o esporte moldou sua carreira, as viagens pelo mundo onde aprendeu inglês na prática e a virada de chave até se tornar dono da IW English School Santo Eduardo.",
+      type: "Corte",
+      featured: false,
     },
     {
       id: "corte-faculdade-paraguai",
@@ -310,7 +336,7 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
   stats: [
     { id: "inscritos", value: "1,11 mi", label: "inscritos no canal" },
-    { id: "videos", value: "8", label: "vídeos publicados" },
+    { id: "videos", value: "10", label: "vídeos publicados" },
     { id: "temas", value: "3", label: "pilares editoriais" },
     { id: "estudio", value: "100%", label: "histórias reais" },
   ],
@@ -322,6 +348,13 @@ export const DEFAULT_CONTENT: SiteContent = {
     ctaLabel: "Quero ser convidado(a)",
   },
   guests: [
+    {
+      id: "thiago-campoi",
+      name: "Thiago Campoi",
+      role: "Pioneiro do Bossaball · IW English School",
+      photo: "",
+      episodeId: "ep-thiago-campoi",
+    },
     {
       id: "queli",
       name: "Dra. Queli Meireles",
