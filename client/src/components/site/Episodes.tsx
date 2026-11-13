@@ -22,38 +22,33 @@ const FILTERS = ["Todos", "Episódio", "Corte", "Short", "Ao vivo"] as const;
 type Filter = (typeof FILTERS)[number];
 
 function Thumb({ episode, className }: { episode: Episode; className?: string }) {
-  if (episode.thumbnail) {
-    return (
-      <div className="relative size-full overflow-hidden bg-[#050b14]">
-        <img
-          src={episode.thumbnail}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 size-full scale-110 object-cover opacity-45 blur-xl"
-        />
-        <img
-          src={episode.thumbnail}
-          alt={`Capa do episódio: ${episode.title}`}
-          loading="lazy"
-          className={cn("relative z-10 size-full object-contain", className)}
-        />
-      </div>
-    );
-  }
+  const src = episode.thumbnail || youtubeThumbnail(episode.youtubeId);
+  const handleError = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    if (episode.thumbnail) return;
+    const img = event.currentTarget;
+    if (!img.dataset.fallback) {
+      img.dataset.fallback = "1";
+      img.src = youtubeThumbnail(episode.youtubeId, "hq");
+    }
+  };
+
   return (
-    <img
-      src={youtubeThumbnail(episode.youtubeId)}
-      alt={`Capa do episódio: ${episode.title}`}
-      loading="lazy"
-      className={cn("size-full object-cover", className)}
-      onError={event => {
-        const img = event.currentTarget;
-        if (!img.dataset.fallback) {
-          img.dataset.fallback = "1";
-          img.src = youtubeThumbnail(episode.youtubeId, "hq");
-        }
-      }}
-    />
+    <div className="relative size-full overflow-hidden bg-[#050b14]">
+      <img
+        src={src}
+        alt=""
+        aria-hidden="true"
+        onError={handleError}
+        className="absolute inset-0 size-full scale-110 object-cover opacity-45 blur-xl"
+      />
+      <img
+        src={src}
+        alt={`Capa do episódio: ${episode.title}`}
+        loading="lazy"
+        onError={handleError}
+        className={cn("relative z-10 size-full object-contain", className)}
+      />
+    </div>
   );
 }
 
