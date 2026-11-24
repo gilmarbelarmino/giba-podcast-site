@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: "Convidados", href: "#convidados" },
   { label: "Patrocínio", href: "#patrocinio" },
   { label: "Contato", href: "#contato" },
+  { label: "Conheça o Giba", href: "/gibaz4" },
 ];
 
 export function Header({ brand }: { brand: SiteContent["brand"] }) {
