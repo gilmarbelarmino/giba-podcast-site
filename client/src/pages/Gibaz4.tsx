@@ -355,37 +355,36 @@ export default function Gibaz4() {
               {...spotlight}
               className="card-surface spotlight mx-auto max-w-4xl rounded-3xl border border-white/12 bg-[#0a0f12]/90 p-6 shadow-[0_30px_90px_-28px_rgba(46,230,214,0.28)] sm:p-8 lg:p-10"
             >
-              <div className="grid items-center gap-8 md:grid-cols-[260px_1fr] lg:grid-cols-[290px_1fr] lg:gap-10">
-                {/* Coluna da Foto principal + Logo oficial muito mais aparente */}
-                <div className="mx-auto flex w-full max-w-[260px] flex-col items-center gap-4 md:max-w-none">
-                  {/* Foto principal com moldura iluminada */}
-                  <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand/40 bg-[#050708] shadow-[0_0_55px_-12px_rgba(46,230,214,0.5)]">
+              <div className="grid items-center gap-6 md:grid-cols-[240px_1fr] lg:grid-cols-[260px_1fr] lg:gap-10">
+                {/* Coluna da Foto principal (compacta no celular e focada no rosto) + Logo oficial */}
+                <div className="mx-auto flex w-full flex-row items-center justify-center gap-4 md:flex-col">
+                  {/* Foto principal menor no celular e focada no rosto */}
+                  <div className="group relative size-28 shrink-0 overflow-hidden rounded-full border-2 border-brand bg-[#050708] shadow-[0_0_40px_-8px_rgba(46,230,214,0.65)] sm:size-32 md:size-44 md:rounded-3xl">
                     <img
                       src={data.profile.heroPhoto}
                       alt={data.profile.heroPhotoAlt}
-                      width={720}
-                      height={900}
+                      width={600}
+                      height={600}
                       fetchPriority="high"
-                      className="size-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                      className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/65 to-transparent" />
                   </div>
 
                   {/* Card do Logo Oficial em destaque — clicável para descer a página */}
                   <a
                     href="#sobre"
                     aria-label="Logo Oficial Gilmar Belarmino — clique para conhecer a trajetória"
-                    className="group relative flex w-full flex-col items-center overflow-hidden rounded-2xl border-2 border-brand/50 bg-white p-3.5 shadow-[0_0_45px_-10px_rgba(46,230,214,0.65)] transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:shadow-[0_0_60px_-8px_rgba(46,230,214,0.9)]"
+                    className="group relative flex flex-col items-center overflow-hidden rounded-2xl border-2 border-brand/50 bg-white px-3.5 py-2.5 shadow-[0_0_40px_-10px_rgba(46,230,214,0.65)] transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:shadow-[0_0_60px_-8px_rgba(46,230,214,0.9)] md:w-full md:p-3.5"
                   >
                     <img
                       src={data.profile.logoImage}
                       alt={data.profile.logoAlt}
-                      width={260}
-                      height={260}
-                      className="h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105 sm:h-32"
+                      width={220}
+                      height={220}
+                      className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105 sm:h-24 md:h-28"
                     />
-                    <span className="mt-1.5 inline-flex items-center gap-1 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[#0b2530] transition-colors group-hover:text-[#0f8f88]">
-                      Conhecer minha história
+                    <span className="mt-1 inline-flex items-center gap-1 text-[0.64rem] font-bold uppercase tracking-[0.14em] text-[#0b2530] transition-colors group-hover:text-[#0f8f88]">
+                      Minha história
                       <ChevronDown className="size-3.5 animate-bounce" aria-hidden="true" />
                     </span>
                   </a>
@@ -400,21 +399,21 @@ export default function Gibaz4() {
                     </span>
                   </div>
 
-                  <h1 className="display-title mt-5 text-3xl text-white sm:text-4xl lg:text-5xl">
+                  <h1 className="display-title mt-4 text-3xl text-white sm:text-4xl lg:text-5xl">
                     {data.profile.heroTitle}
                   </h1>
 
-                  <p className="mt-4 text-base leading-relaxed text-[#c2d0d6] sm:text-[1.06rem]">
+                  <p className="mt-3 text-sm leading-relaxed text-[#c2d0d6] sm:text-base">
                     {data.profile.introText}
                   </p>
 
                   {/* Botões para os principais destinos */}
-                  <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
                     <a
                       href={data.profile.podcastYoutubeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-primary min-h-[50px] w-full justify-center text-sm sm:text-base"
+                      className="btn btn-primary min-h-[48px] w-full justify-center text-sm sm:text-base"
                     >
                       <Play className="size-4 fill-current" aria-hidden="true" />
                       Assistir ao Giba Podcast
@@ -426,7 +425,7 @@ export default function Gibaz4() {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn min-h-[50px] w-full justify-center border border-[#25D366]/60 bg-[#25D366]/15 text-sm font-semibold text-white shadow-[0_0_30px_-10px_rgba(37,211,102,0.7)] transition hover:-translate-y-0.5 hover:bg-[#25D366] hover:text-[#04140a] sm:text-base"
+                        className="btn min-h-[48px] w-full justify-center border border-[#25D366]/60 bg-[#25D366]/15 text-sm font-semibold text-white shadow-[0_0_30px_-10px_rgba(37,211,102,0.7)] transition hover:-translate-y-0.5 hover:bg-[#25D366] hover:text-[#04140a] sm:text-base"
                       >
                         <span className="relative flex size-3">
                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-75" />
@@ -451,26 +450,16 @@ export default function Gibaz4() {
                       </a>
                     ) : null}
 
-                    {data.contact.tiktokUrl ? (
-                      <a
-                        href={data.contact.tiktokUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-ghost min-h-[48px] w-full justify-center text-sm sm:text-base"
-                      >
-                        <PlatformIcon platform="TikTok" className="size-4 text-brand" />
-                        TikTok
-                        <ArrowUpRight className="size-4" aria-hidden="true" />
-                      </a>
-                    ) : (
-                      <a
-                        href="#sobre"
-                        className="btn btn-ghost min-h-[48px] w-full justify-center text-sm sm:text-base"
-                      >
-                        <ArrowDown className="size-4 text-brand" aria-hidden="true" />
-                        Ver minha trajetória
-                      </a>
-                    )}
+                    <a
+                      href="https://www.youtube.com/watch?v=m75KthGtZs4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-ghost min-h-[48px] w-full justify-center border-brand/40 bg-brand/[0.07] text-sm text-brand-soft hover:bg-brand/15 sm:text-base"
+                    >
+                      <Play className="size-4 text-brand" aria-hidden="true" />
+                      Calcular seu peso ideal
+                      <ArrowUpRight className="size-4" aria-hidden="true" />
+                    </a>
                   </div>
 
                   {/* Atalhos rápidos por âncora */}
@@ -1167,41 +1156,71 @@ function ProductCard({ product, priceNote }: { product: Gibaz4Product; priceNote
 function MaterialCard({ material }: { material: Gibaz4Material }) {
   const isAvailable =
     material.status === "available" && Boolean(material.downloadOrPurchaseUrl);
+  const isVideo = material.format.toLowerCase().includes("vídeo");
   const isSpreadsheet = material.format.toLowerCase().includes("planilha");
-  const Icon = isSpreadsheet ? FileSpreadsheet : BookOpen;
+  const Icon = isVideo ? Play : isSpreadsheet ? FileSpreadsheet : BookOpen;
 
   return (
-    <article className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#0b1114] p-6 transition hover:border-brand/35">
+    <article
+      className={cn(
+        "flex h-full flex-col justify-between overflow-hidden rounded-2xl border bg-[#0b1114] transition hover:border-brand/45",
+        isAvailable ? "border-brand/40 shadow-[0_0_35px_-14px_rgba(46,230,214,0.4)]" : "border-white/10",
+      )}
+    >
       <div>
-        <div className="flex items-center justify-between gap-2">
-          <span className="grid size-11 place-items-center rounded-xl border border-brand/30 bg-brand/10 text-brand">
-            <Icon className="size-5" aria-hidden="true" />
-          </span>
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="rounded-full border border-white/12 bg-white/[0.03] px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[#c2cfd4]">
-              {material.format}
+        {material.coverImage ? (
+          <a
+            href={isAvailable ? material.downloadOrPurchaseUrl : undefined}
+            target={isAvailable ? "_blank" : undefined}
+            rel={isAvailable ? "noopener noreferrer" : undefined}
+            className="group relative block aspect-video w-full overflow-hidden bg-[#050708]"
+          >
+            <img
+              src={material.coverImage}
+              alt={material.title}
+              width={480}
+              height={360}
+              loading="lazy"
+              className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            <span className="absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-brand bg-black/70 text-brand shadow-[0_0_25px_rgba(46,230,214,0.8)] transition group-hover:scale-110 group-hover:bg-brand group-hover:text-[#031110]">
+              <Play className="size-5 translate-x-0.5 fill-current" aria-hidden="true" />
             </span>
-            {material.accessType ? (
-              <span className="rounded-full border border-brand/30 bg-brand/10 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-brand-soft">
-                {material.accessType}
-              </span>
-            ) : null}
-          </div>
-        </div>
-
-        <h3 className="mt-4 text-base font-semibold leading-snug text-white">
-          {material.title}
-        </h3>
-        <p className="mt-2 text-xs leading-relaxed text-[#b2c1c7]">{material.description}</p>
-
-        {material.healthDisclaimer ? (
-          <p className="mt-3 rounded-xl border border-white/8 bg-white/[0.02] p-3 text-[0.72rem] leading-relaxed text-[#8fa2a9]">
-            {material.healthDisclaimer}
-          </p>
+          </a>
         ) : null}
+
+        <div className="p-6 pb-0">
+          <div className="flex items-center justify-between gap-2">
+            <span className="grid size-10 place-items-center rounded-xl border border-brand/30 bg-brand/10 text-brand">
+              <Icon className="size-4.5" aria-hidden="true" />
+            </span>
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="rounded-full border border-white/12 bg-white/[0.03] px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[#c2cfd4]">
+                {material.format}
+              </span>
+              {material.accessType ? (
+                <span className="rounded-full border border-brand/30 bg-brand/10 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-brand-soft">
+                  {material.accessType}
+                </span>
+              ) : null}
+            </div>
+          </div>
+
+          <h3 className="mt-4 text-base font-semibold leading-snug text-white">
+            {material.title}
+          </h3>
+          <p className="mt-2 text-xs leading-relaxed text-[#b2c1c7]">{material.description}</p>
+
+          {material.healthDisclaimer ? (
+            <p className="mt-3 rounded-xl border border-white/8 bg-white/[0.02] p-3 text-[0.72rem] leading-relaxed text-[#8fa2a9]">
+              {material.healthDisclaimer}
+            </p>
+          ) : null}
+        </div>
       </div>
 
-      <div className="mt-5 pt-2">
+      <div className="p-6 pt-5">
         {isAvailable ? (
           <a
             href={material.downloadOrPurchaseUrl}
@@ -1209,7 +1228,11 @@ function MaterialCard({ material }: { material: Gibaz4Material }) {
             rel="noopener noreferrer"
             className="btn btn-primary min-h-[44px] w-full justify-center text-xs sm:text-sm"
           >
-            <Download className="size-4" aria-hidden="true" />
+            {isVideo ? (
+              <Play className="size-4 fill-current" aria-hidden="true" />
+            ) : (
+              <Download className="size-4" aria-hidden="true" />
+            )}
             {material.ctaLabel || "Acessar material"}
             <ArrowUpRight className="size-4" aria-hidden="true" />
           </a>

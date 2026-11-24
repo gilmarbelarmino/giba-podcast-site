@@ -195,8 +195,8 @@ export const GIBAZ4_CONTENT: Gibaz4Content = {
       "Esporte, tecnologia, conversas e vida real. Conheça minha trajetória, acompanhe meus canais e descubra os projetos dos quais participo.",
     logoImage: "/assets/gibaz4/logo-gb-gilmar.png",
     logoAlt: "Logo oficial Gilmar Belarmino — Esporte, Tecnologia e Vida Real",
-    avatarPhoto: "/assets/gibaz4/giba-perfil.jpg",
-    heroPhoto: "/assets/gibaz4/giba-perfil.jpg",
+    avatarPhoto: "/assets/gibaz4/giba-rosto.jpg",
+    heroPhoto: "/assets/gibaz4/giba-rosto.jpg",
     heroPhotoAlt: "Foto de Gilmar (@gibaz4)",
     podcastSiteUrl: "/",
     podcastYoutubeUrl: "https://www.youtube.com/@gibapodcast",
@@ -410,6 +410,21 @@ export const GIBAZ4_CONTENT: Gibaz4Content = {
   },
 
   materials: [
+    {
+      id: "video-calculo-peso-ideal",
+      title: "Como calcular o seu peso ideal para a sua altura",
+      description:
+        "Vídeo informativo e importante que ensina, passo a passo, como descobrir a faixa de peso ideal para a sua altura de forma rápida na calculadora do celular.",
+      format: "Vídeo informativo",
+      accessType: "Gratuito",
+      status: "available",
+      coverImage: "https://i.ytimg.com/vi/m75KthGtZs4/hqdefault.jpg",
+      downloadOrPurchaseUrl: "https://www.youtube.com/watch?v=m75KthGtZs4",
+      ctaLabel: "Assistir vídeo no YouTube",
+      healthDisclaimer:
+        "Conteúdo educativo sobre cálculo de faixa de peso pelo IMC. Não substitui avaliação individualizada com médico, nutricionista ou profissional de saúde.",
+      published: true,
+    },
     {
       id: "planilha-registro-treinos",
       title: "Planilha de Registro e Acompanhamento de Treinos",
