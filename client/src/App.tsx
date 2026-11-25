@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Gibaz4 from "./pages/Gibaz4";
+import Gibaz4Painel from "./pages/Gibaz4Painel";
 
 const Admin = lazy(() => import("./pages/Admin"));
 
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/gibaz4"} component={Gibaz4} />
+      <Route path={"/gibaz4/painel"} component={Gibaz4Painel} />
       <Route path={"/admin"}>
         <Suspense
           fallback={

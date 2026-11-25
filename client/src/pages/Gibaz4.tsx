@@ -39,6 +39,11 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { PlatformIcon, Reveal, useSpotlight } from "@/components/site/primitives";
+import {
+  trackGibaz4Event,
+  trackGibaz4PageView,
+  type Gibaz4EventKey,
+} from "@/lib/gibaz4Analytics";
 
 const ANCHOR_NAV = [
   { label: "Sobre", href: "#sobre" },
@@ -135,6 +140,10 @@ export default function Gibaz4() {
     () => data.materials.filter(item => item.published),
     [data.materials],
   );
+
+  useEffect(() => {
+    trackGibaz4PageView();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -413,6 +422,9 @@ export default function Gibaz4() {
                       href={data.profile.podcastYoutubeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() =>
+                        trackGibaz4Event("youtube_podcast", "YouTube Giba Podcast (Topo)")
+                      }
                       className="btn btn-primary min-h-[48px] w-full justify-center text-sm sm:text-base"
                     >
                       <Play className="size-4 fill-current" aria-hidden="true" />
@@ -425,6 +437,9 @@ export default function Gibaz4() {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() =>
+                          trackGibaz4Event("whatsapp_hero", "WhatsApp (Botão do Topo)")
+                        }
                         className="btn min-h-[48px] w-full justify-center border border-[#25D366]/60 bg-[#25D366]/15 text-sm font-semibold text-white shadow-[0_0_30px_-10px_rgba(37,211,102,0.7)] transition hover:-translate-y-0.5 hover:bg-[#25D366] hover:text-[#04140a] sm:text-base"
                       >
                         <span className="relative flex size-3">
@@ -442,6 +457,9 @@ export default function Gibaz4() {
                         href={data.contact.instagramUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() =>
+                          trackGibaz4Event("instagram", "Instagram @gibaz4 (Topo)")
+                        }
                         className="btn btn-ghost min-h-[48px] w-full justify-center text-sm sm:text-base"
                       >
                         <Instagram className="size-4 text-brand" aria-hidden="true" />
@@ -454,6 +472,12 @@ export default function Gibaz4() {
                       href="https://www.youtube.com/watch?v=m75KthGtZs4"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() =>
+                        trackGibaz4Event(
+                          "video_peso_ideal",
+                          "Vídeo: Calcular seu peso ideal (Topo)",
+                        )
+                      }
                       className="btn btn-ghost min-h-[48px] w-full justify-center border-brand/40 bg-brand/[0.07] text-sm text-brand-soft hover:bg-brand/15 sm:text-base"
                     >
                       <Play className="size-4 text-brand" aria-hidden="true" />
@@ -791,6 +815,9 @@ export default function Gibaz4() {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackGibaz4Event("whatsapp_contact", "WhatsApp (Seção de Contato)")
+                    }
                     className="btn min-h-[48px] bg-[#25D366] text-[#04140a] shadow-[0_0_30px_-8px_rgba(37,211,102,0.8)] hover:bg-[#3bf07c]"
                   >
                     <MessageCircle className="size-4" aria-hidden="true" />
@@ -802,6 +829,7 @@ export default function Gibaz4() {
                 {data.contact.phoneForCalls ? (
                   <a
                     href={`tel:${data.contact.phoneForCalls.replace(/\s+/g, "")}`}
+                    onClick={() => trackGibaz4Event("other_clicks", "Telefone (Ligação)")}
                     className="btn btn-ghost min-h-[48px]"
                   >
                     <Phone className="size-4 text-brand" aria-hidden="true" />
@@ -814,6 +842,9 @@ export default function Gibaz4() {
                     href={data.contact.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackGibaz4Event("instagram", "Instagram @gibaz4 (Seção de Contato)")
+                    }
                     className="btn btn-ghost min-h-[48px]"
                   >
                     <Instagram className="size-4 text-brand" aria-hidden="true" />
@@ -827,6 +858,7 @@ export default function Gibaz4() {
                     href={data.contact.tiktokUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackGibaz4Event("tiktok", "TikTok (Seção de Contato)")}
                     className="btn btn-ghost min-h-[48px]"
                   >
                     <PlatformIcon platform="TikTok" className="size-4 text-brand" />
@@ -839,6 +871,9 @@ export default function Gibaz4() {
                   href={data.contact.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackGibaz4Event("youtube_podcast", "YouTube Giba Podcast (Seção de Contato)")
+                  }
                   className="btn btn-ghost min-h-[48px]"
                 >
                   <Youtube className="size-4 text-brand" aria-hidden="true" />
@@ -849,6 +884,7 @@ export default function Gibaz4() {
                 {data.contact.email ? (
                   <a
                     href={`mailto:${data.contact.email}`}
+                    onClick={() => trackGibaz4Event("email", "E-mail de Contato")}
                     className="btn btn-ghost min-h-[48px]"
                   >
                     <Mail className="size-4 text-brand" aria-hidden="true" />
@@ -856,7 +892,13 @@ export default function Gibaz4() {
                   </a>
                 ) : null}
 
-                <a href={data.profile.podcastSiteUrl} className="btn btn-ghost min-h-[48px]">
+                <a
+                  href={data.profile.podcastSiteUrl}
+                  onClick={() =>
+                    trackGibaz4Event("site_podcast", "Site do Giba Podcast (Seção de Contato)")
+                  }
+                  className="btn btn-ghost min-h-[48px]"
+                >
                   <Mic className="size-4 text-brand" aria-hidden="true" />
                   Site do Giba Podcast
                 </a>
@@ -892,7 +934,13 @@ export default function Gibaz4() {
             <nav aria-label="Links institucionais do Giba Podcast">
               <ul className="flex flex-wrap items-center gap-4 text-xs font-medium text-[#a8b8be]">
                 <li>
-                  <a href="/" className="transition hover:text-brand">
+                  <a
+                    href="/"
+                    onClick={() =>
+                      trackGibaz4Event("site_podcast", "Início do Podcast (Rodapé)")
+                    }
+                    className="transition hover:text-brand"
+                  >
                     Início do Podcast
                   </a>
                 </li>
@@ -912,8 +960,8 @@ export default function Gibaz4() {
                   </a>
                 </li>
                 <li>
-                  <a href="/#contato" className="transition hover:text-brand">
-                    Contato do Podcast
+                  <a href="/gibaz4/painel" className="text-[#7c8e95] transition hover:text-brand">
+                    Painel de Métricas
                   </a>
                 </li>
               </ul>
@@ -946,6 +994,9 @@ export default function Gibaz4() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              trackGibaz4Event("whatsapp_floating", "WhatsApp (Ícone Flutuante Pulsante)")
+            }
             aria-label="Falar com Gilmar diretamente pelo WhatsApp"
             title="Chamar no WhatsApp agora"
             className="group relative flex items-center gap-2.5 rounded-full bg-[#25D366] p-3.5 text-[#04140a] shadow-[0_0_35px_rgba(37,211,102,0.75)] transition-transform duration-300 hover:scale-105 sm:px-4 sm:py-3.5"
@@ -972,6 +1023,15 @@ export default function Gibaz4() {
 }
 
 function ChannelCard({ channel }: { channel: Gibaz4Channel }) {
+  const eventKey: Gibaz4EventKey =
+    channel.platform === "Instagram"
+      ? "instagram"
+      : channel.platform === "YouTube"
+        ? "youtube_podcast"
+        : channel.platform === "TikTok"
+          ? "tiktok"
+          : "other_clicks";
+
   return (
     <article
       className={cn(
@@ -1020,6 +1080,7 @@ function ChannelCard({ channel }: { channel: Gibaz4Channel }) {
           href={channel.url}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackGibaz4Event(eventKey, `Canal: ${channel.name}`)}
           className={cn(
             "btn min-h-[46px] w-full justify-center text-sm sm:w-auto",
             channel.featured ? "btn-primary" : "btn-ghost",
@@ -1159,6 +1220,11 @@ function MaterialCard({ material }: { material: Gibaz4Material }) {
   const isVideo = material.format.toLowerCase().includes("vídeo");
   const isSpreadsheet = material.format.toLowerCase().includes("planilha");
   const Icon = isVideo ? Play : isSpreadsheet ? FileSpreadsheet : BookOpen;
+  const trackClick = () => {
+    const key: Gibaz4EventKey =
+      material.id === "video-calculo-peso-ideal" ? "video_peso_ideal" : "other_clicks";
+    trackGibaz4Event(key, `Material: ${material.title}`);
+  };
 
   return (
     <article
@@ -1173,6 +1239,7 @@ function MaterialCard({ material }: { material: Gibaz4Material }) {
             href={isAvailable ? material.downloadOrPurchaseUrl : undefined}
             target={isAvailable ? "_blank" : undefined}
             rel={isAvailable ? "noopener noreferrer" : undefined}
+            onClick={isAvailable ? trackClick : undefined}
             className="group relative block aspect-video w-full overflow-hidden bg-[#050708]"
           >
             <img
@@ -1226,6 +1293,7 @@ function MaterialCard({ material }: { material: Gibaz4Material }) {
             href={material.downloadOrPurchaseUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={trackClick}
             className="btn btn-primary min-h-[44px] w-full justify-center text-xs sm:text-sm"
           >
             {isVideo ? (
