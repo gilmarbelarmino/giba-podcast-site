@@ -60,9 +60,16 @@ export default function Gibaz4Painel() {
 
   useEffect(() => {
     document.title = "Painel de Métricas @gibaz4 — Gilmar";
-    if (unlocked) {
-      loadData();
-    }
+    if (!unlocked) return;
+    loadData();
+    const timer = window.setInterval(() => {
+      fetchGibaz4Stats()
+        .then(data => setStats(data))
+        .catch(() => {
+          /* silent background refresh */
+        });
+    }, 4000);
+    return () => window.clearInterval(timer);
   }, [unlocked, loadData]);
 
   const handleUnlock = (e: FormEvent) => {

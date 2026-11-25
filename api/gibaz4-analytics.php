@@ -1,7 +1,7 @@
 <?php
 /**
  * Endpoint gratuito de monitoramento de cliques e visitas da página /gibaz4
- * Armazena as métricas em JSON local no servidor (sem depender de serviços pagos).
+ * Armazena as métricas em JSON local no servidor (compatível com PHP 8+).
  */
 
 header("Content-Type: application/json; charset=utf-8");
@@ -45,63 +45,60 @@ function defaultStats(): array {
       "instagram" => 0,
       "direct_or_other" => 0,
     ],
-    "byDate" => new stdClass(),
+    "byDate" => [],
     "recent" => [],
   ];
 }
 
 function loadStats(string $file): array {
+  $defaults = defaultStats();
   if (!file_exists($file)) {
-    return defaultStats();
+    return $defaults;
   }
   $raw = @file_get_contents($file);
   if (!$raw) {
-    return defaultStats();
+    return $defaults;
   }
   $decoded = json_decode($raw, true);
   if (!is_array($decoded)) {
-    return defaultStats();
+    return $defaults;
   }
-  $defaults = defaultStats();
-  $decoded["totals"] = array_merge($defaults["totals"], $decoded["totals"] ?? []);
-  $decoded["devices"] = array_merge($defaults["devices"], $decoded["devices"] ?? []);
-  $decoded["sources"] = array_merge($defaults["sources"], $decoded["sources"] ?? []);
-  if (!isset($decoded["byDate"]) || !is_array($decoded["byDate"])) {
-    $decoded["byDate"] = [];
-  }
-  if (!isset($decoded["recent"]) || !is_array($decoded["recent"])) {
-    $decoded["recent"] = [];
-  }
+  $decoded["totals"] = array_merge($defaults["totals"], is_array($decoded["totals"] ?? null) ? $decoded["totals"] : []);
+  $decoded["devices"] = array_merge($defaults["devices"], is_array($decoded["devices"] ?? null) ? $decoded["devices"] : []);
+  $decoded["sources"] = array_merge($defaults["sources"], is_array($decoded["sources"] ?? null) ? $decoded["sources"] : []);
+  $decoded["byDate"] = is_array($decoded["byDate"] ?? null) ? $decoded["byDate"] : [];
+  $decoded["recent"] = is_array($decoded["recent"] ?? null) ? $decoded["recent"] : [];
   return $decoded;
+}
+
+function formatForOutput(array $stats): array {
+  $out = $stats;
+  $out["byDate"] = (object)($stats["byDate"] ?? []);
+  return $out;
 }
 
 function saveStats(string $file, array $stats): void {
   $stats["updatedAt"] = gmdate("c");
-  if (empty($stats["byDate"])) {
-    $stats["byDate"] = new stdClass();
-  }
-  @file_put_contents($file, json_encode($stats, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), LOCK_EX);
+  $toSave = formatForOutput($stats);
+  @file_put_contents($file, json_encode($toSave, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), LOCK_EX);
 }
 
 $method = $_SERVER["REQUEST_METHOD"] ?? "GET";
 
-if ($method === "GET") {
+if ($method === "GET" && empty($_GET["action"])) {
   $stats = loadStats($statsFile);
-  if (empty($stats["byDate"])) {
-    $stats["byDate"] = new stdClass();
-  }
-  echo json_encode($stats, JSON_UNESCAPED_UNICODE);
+  echo json_encode(formatForOutput($stats), JSON_UNESCAPED_UNICODE);
   exit;
 }
 
-if ($method === "POST") {
+if ($method === "POST" || !empty($_GET["action"])) {
   $rawBody = file_get_contents("php://input");
   $payload = json_decode($rawBody ?: "{}", true);
-  if (!is_array($payload)) {
-    $payload = [];
+  if (!is_array($payload) || empty($payload)) {
+    $payload = $_POST ?: $_GET;
   }
 
-  $action = $payload["action"] ?? "track";
+  $action = (string)($payload["action"] ?? "track");
 
   if ($action === "reset") {
     $pin = (string)($payload["pin"] ?? "");
@@ -112,7 +109,7 @@ if ($method === "POST") {
     }
     $fresh = defaultStats();
     saveStats($statsFile, $fresh);
-    echo json_encode(["ok" => true, "stats" => $fresh], JSON_UNESCAPED_UNICODE);
+    echo json_encode(["ok" => true, "stats" => formatForOutput($fresh)], JSON_UNESCAPED_UNICODE);
     exit;
   }
 
@@ -123,7 +120,8 @@ if ($method === "POST") {
     exit;
   }
 
-  $label = mb_substr(trim((string)($payload["label"] ?? $event)), 0, 120);
+  $rawLabel = trim((string)($payload["label"] ?? $event));
+  $label = function_exists("mb_substr") ? mb_substr($rawLabel, 0, 120) : substr($rawLabel, 0, 120);
   $isUnique = !empty($payload["isUnique"]);
   $ua = strtolower((string)($_SERVER["HTTP_USER_AGENT"] ?? ""));
   $referrer = strtolower((string)($payload["referrer"] ?? ($_SERVER["HTTP_REFERER"] ?? "")));
@@ -154,7 +152,6 @@ if ($method === "POST") {
     }
   }
 
-  // Contagem diária (fuso Brasília GMT-3)
   $tz = new DateTimeZone("America/Sao_Paulo");
   $now = new DateTime("now", $tz);
   $dayKey = $now->format("Y-m-d");
@@ -168,20 +165,18 @@ if ($method === "POST") {
   }
 
   if ($event === "page_view") {
-    $stats["byDate"][$dayKey]["views"]++;
+    $stats["byDate"][$dayKey]["views"] = (int)($stats["byDate"][$dayKey]["views"] ?? 0) + 1;
   } elseif (strpos($event, "whatsapp_") === 0) {
-    $stats["byDate"][$dayKey]["whatsapp"]++;
+    $stats["byDate"][$dayKey]["whatsapp"] = (int)($stats["byDate"][$dayKey]["whatsapp"] ?? 0) + 1;
   } else {
-    $stats["byDate"][$dayKey]["social"]++;
+    $stats["byDate"][$dayKey]["social"] = (int)($stats["byDate"][$dayKey]["social"] ?? 0) + 1;
   }
 
-  // Mantém os últimos 60 dias no histórico diário
   ksort($stats["byDate"]);
   if (count($stats["byDate"]) > 60) {
     $stats["byDate"] = array_slice($stats["byDate"], -60, 60, true);
   }
 
-  // Registra últimos 40 eventos
   array_unshift($stats["recent"], [
     "time" => $now->format("d/m/Y H:i:s"),
     "event" => $event,
@@ -194,7 +189,7 @@ if ($method === "POST") {
   }
 
   saveStats($statsFile, $stats);
-  echo json_encode(["ok" => true]);
+  echo json_encode(["ok" => true, "totals" => $stats["totals"]], JSON_UNESCAPED_UNICODE);
   exit;
 }
 
