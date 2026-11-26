@@ -401,23 +401,23 @@ export default function Gibaz4() {
 
                 {/* Identificação e Botões Principais */}
                 <div className="text-center md:text-left">
-                  <div className="inline-flex flex-wrap items-center justify-center gap-2.5 md:justify-start">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/15 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-soft shadow-[0_0_25px_-5px_rgba(46,230,214,0.5)]">
-                      <span className="animate-pulse-dot size-2 rounded-full bg-brand" aria-hidden="true" />
+                  <div className="inline-flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/15 px-2.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-[0.12em] text-brand-soft shadow-[0_0_20px_-5px_rgba(46,230,214,0.45)] sm:px-3 sm:py-1 sm:text-[0.68rem] sm:tracking-[0.16em]">
+                      <span className="animate-pulse-dot size-1.5 rounded-full bg-brand" aria-hidden="true" />
                       Esporte • Tecnologia • Vida Real
                     </span>
                   </div>
 
-                  <h1 className="display-title mt-4 text-3xl text-white sm:text-4xl lg:text-5xl">
+                  <h1 className="display-title mt-3 text-3xl text-white sm:mt-4 sm:text-4xl lg:text-5xl">
                     {data.profile.heroTitle}
                   </h1>
 
-                  <p className="mt-3 text-sm leading-relaxed text-[#c2d0d6] sm:text-base">
+                  <p className="mt-2.5 text-xs leading-relaxed text-[#c2d0d6] sm:mt-3 sm:text-base">
                     {data.profile.introText}
                   </p>
 
-                  {/* 4 Ícones Diretos Clicáveis: Instagram, WhatsApp, YouTube gibaz4 e YouTube Giba Podcast */}
-                  <div className="mt-6 grid grid-cols-4 gap-2.5 sm:gap-4">
+                  {/* 5 Ícones Diretos Clicáveis no Mesmo Formato e Tamanho: Instagram, TikTok, WhatsApp, YouTube gibaz4 e YouTube Giba Podcast */}
+                  <div className="mt-5 grid grid-cols-5 gap-1.5 sm:mt-6 sm:gap-3">
                     {/* 1. Ícone do Instagram */}
                     {data.contact.instagramUrl ? (
                       <a
@@ -428,24 +428,51 @@ export default function Gibaz4() {
                           trackGibaz4Event("instagram", "Instagram @gibaz4 (Ícone do Topo)")
                         }
                         aria-label="Instagram @gibaz4"
-                        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/12 bg-white/[0.03] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#E1306C]/70 hover:bg-[#E1306C]/10 hover:shadow-[0_12px_30px_-10px_rgba(225,48,108,0.6)]"
+                        className="group flex flex-col items-center justify-center gap-1.5 rounded-2xl border border-white/12 bg-white/[0.03] px-1 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#E1306C]/70 hover:bg-[#E1306C]/10 hover:shadow-[0_12px_30px_-10px_rgba(225,48,108,0.6)] sm:gap-2 sm:px-2 sm:py-3.5"
                       >
                         <span
-                          className="grid size-13 place-items-center rounded-2xl text-white shadow-[0_8px_22px_-6px_rgba(225,48,108,0.75)] transition-transform duration-300 group-hover:scale-110 sm:size-14"
+                          className="grid size-11 place-items-center rounded-xl text-white shadow-[0_8px_22px_-6px_rgba(225,48,108,0.75)] transition-transform duration-300 group-hover:scale-110 sm:size-13 sm:rounded-2xl"
                           style={{
                             background:
                               "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
                           }}
                         >
-                          <InstagramBrandSvg className="size-7 sm:size-8" />
+                          <InstagramBrandSvg className="size-6 sm:size-7" />
                         </span>
-                        <span className="text-[0.72rem] font-bold leading-tight text-white group-hover:text-[#ff9ec0] sm:text-xs">
+                        <span className="text-[0.62rem] font-bold leading-tight text-white group-hover:text-[#ff9ec0] sm:text-xs">
                           Instagram
                         </span>
                       </a>
                     ) : null}
 
-                    {/* 2. Ícone Direto do WhatsApp */}
+                    {/* 2. Ícone do TikTok — gibaz4 */}
+                    {data.contact.tiktokUrl ? (
+                      <a
+                        href={data.contact.tiktokUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackGibaz4Event("tiktok", "TikTok @gibaaz4 (Ícone do Topo)")
+                        }
+                        aria-label="TikTok @gibaaz4"
+                        className="group flex flex-col items-center justify-center gap-1.5 rounded-2xl border border-white/12 bg-white/[0.03] px-1 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#00f2fe]/70 hover:bg-[#00f2fe]/10 hover:shadow-[0_12px_30px_-10px_rgba(0,242,254,0.55)] sm:gap-2 sm:px-2 sm:py-3.5"
+                      >
+                        <span
+                          className="grid size-11 place-items-center rounded-xl border border-white/15 bg-[#08090c] text-white shadow-[0_8px_22px_-6px_rgba(0,242,254,0.6)] transition-transform duration-300 group-hover:scale-110 sm:size-13 sm:rounded-2xl"
+                          style={{
+                            boxShadow:
+                              "-2px -2px 10px -2px rgba(0,242,254,0.55), 2px 2px 10px -2px rgba(254,44,85,0.65)",
+                          }}
+                        >
+                          <TikTokBrandSvg className="size-6 sm:size-7" />
+                        </span>
+                        <span className="text-[0.62rem] font-bold leading-tight text-white group-hover:text-[#00f2fe] sm:text-xs">
+                          TikTok
+                        </span>
+                      </a>
+                    ) : null}
+
+                    {/* 3. Ícone Direto do WhatsApp */}
                     {whatsappUrl ? (
                       <a
                         href={whatsappUrl}
@@ -455,25 +482,25 @@ export default function Gibaz4() {
                           trackGibaz4Event("whatsapp_hero", "WhatsApp (Ícone do Topo)")
                         }
                         aria-label="Falar no WhatsApp"
-                        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-[#25D366]/35 bg-[#25D366]/[0.06] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#25D366]/15 hover:shadow-[0_12px_30px_-10px_rgba(37,211,102,0.65)]"
+                        className="group flex flex-col items-center justify-center gap-1.5 rounded-2xl border border-[#25D366]/35 bg-[#25D366]/[0.06] px-1 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#25D366]/15 hover:shadow-[0_12px_30px_-10px_rgba(37,211,102,0.65)] sm:gap-2 sm:px-2 sm:py-3.5"
                       >
-                        <span className="relative grid size-13 place-items-center rounded-2xl bg-[#25D366] text-[#04140a] shadow-[0_8px_22px_-6px_rgba(37,211,102,0.85)] transition-transform duration-300 group-hover:scale-110 sm:size-14">
+                        <span className="relative grid size-11 place-items-center rounded-xl bg-[#25D366] text-[#04140a] shadow-[0_8px_22px_-6px_rgba(37,211,102,0.85)] transition-transform duration-300 group-hover:scale-110 sm:size-13 sm:rounded-2xl">
                           <span
-                            className="pointer-events-none absolute -right-1 -top-1 flex size-3.5"
+                            className="pointer-events-none absolute -right-1 -top-1 flex size-3"
                             aria-hidden="true"
                           >
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-80" />
-                            <span className="relative inline-flex size-3.5 rounded-full border-2 border-[#0a0f12] bg-[#25D366]" />
+                            <span className="relative inline-flex size-3 rounded-full border-2 border-[#0a0f12] bg-[#25D366]" />
                           </span>
-                          <WhatsAppBrandSvg className="size-7 sm:size-8" />
+                          <WhatsAppBrandSvg className="size-6 sm:size-7" />
                         </span>
-                        <span className="text-[0.72rem] font-bold leading-tight text-white group-hover:text-[#69f09c] sm:text-xs">
+                        <span className="text-[0.62rem] font-bold leading-tight text-white group-hover:text-[#69f09c] sm:text-xs">
                           WhatsApp
                         </span>
                       </a>
                     ) : null}
 
-                    {/* 3. Ícone do YouTube — gibaz4 */}
+                    {/* 4. Ícone do YouTube — gibaz4 */}
                     <a
                       href={data.profile.personalYoutubeUrl}
                       target="_blank"
@@ -482,17 +509,17 @@ export default function Gibaz4() {
                         trackGibaz4Event("youtube_gibaz4", "YouTube gibaz4 (Ícone do Topo)")
                       }
                       aria-label="Canal do YouTube gibaz4"
-                      className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/12 bg-white/[0.03] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#FF0000]/70 hover:bg-[#FF0000]/10 hover:shadow-[0_12px_30px_-10px_rgba(255,0,0,0.6)]"
+                      className="group flex flex-col items-center justify-center gap-1.5 rounded-2xl border border-white/12 bg-white/[0.03] px-1 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#FF0000]/70 hover:bg-[#FF0000]/10 hover:shadow-[0_12px_30px_-10px_rgba(255,0,0,0.6)] sm:gap-2 sm:px-2 sm:py-3.5"
                     >
-                      <span className="grid size-13 place-items-center rounded-2xl bg-[#FF0000] text-white shadow-[0_8px_22px_-6px_rgba(255,0,0,0.8)] transition-transform duration-300 group-hover:scale-110 sm:size-14">
-                        <YouTubeBrandSvg className="size-7 sm:size-8" />
+                      <span className="grid size-11 place-items-center rounded-xl bg-[#FF0000] text-white shadow-[0_8px_22px_-6px_rgba(255,0,0,0.8)] transition-transform duration-300 group-hover:scale-110 sm:size-13 sm:rounded-2xl">
+                        <YouTubeBrandSvg className="size-6 sm:size-7" />
                       </span>
-                      <span className="text-[0.72rem] font-bold leading-tight text-white group-hover:text-[#ff8080] sm:text-xs">
+                      <span className="text-[0.62rem] font-bold leading-tight text-white group-hover:text-[#ff8080] sm:text-xs">
                         gibaz4
                       </span>
                     </a>
 
-                    {/* 4. Ícone do YouTube — Giba Podcast */}
+                    {/* 5. Ícone do YouTube — Giba Podcast */}
                     <a
                       href={data.profile.podcastYoutubeUrl}
                       target="_blank"
@@ -501,26 +528,26 @@ export default function Gibaz4() {
                         trackGibaz4Event("youtube_podcast", "YouTube Giba Podcast (Ícone do Topo)")
                       }
                       aria-label="Canal do YouTube Giba Podcast"
-                      className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-brand/35 bg-brand/[0.06] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:bg-brand/15 hover:shadow-[0_12px_30px_-10px_rgba(46,230,214,0.6)]"
+                      className="group flex flex-col items-center justify-center gap-1.5 rounded-2xl border border-brand/35 bg-brand/[0.06] px-1 py-2.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:bg-brand/15 hover:shadow-[0_12px_30px_-10px_rgba(46,230,214,0.6)] sm:gap-2 sm:px-2 sm:py-3.5"
                     >
-                      <span className="relative grid size-13 place-items-center rounded-2xl bg-[#FF0000] text-white shadow-[0_8px_22px_-6px_rgba(255,0,0,0.8)] ring-2 ring-brand/60 transition-transform duration-300 group-hover:scale-110 sm:size-14">
-                        <YouTubeBrandSvg className="size-7 sm:size-8" />
+                      <span className="relative grid size-11 place-items-center rounded-xl bg-[#FF0000] text-white shadow-[0_8px_22px_-6px_rgba(255,0,0,0.8)] ring-2 ring-brand/60 transition-transform duration-300 group-hover:scale-110 sm:size-13 sm:rounded-2xl">
+                        <YouTubeBrandSvg className="size-6 sm:size-7" />
                       </span>
-                      <span className="text-[0.72rem] font-bold leading-tight text-brand-soft group-hover:text-white sm:text-xs">
+                      <span className="text-[0.6rem] font-bold leading-tight text-brand-soft group-hover:text-white sm:text-xs">
                         Giba Podcast
                       </span>
                     </a>
                   </div>
 
-                  {/* Menus Organizados da Página (substitui o antigo "Explorar:") */}
+                  {/* Menu de Acesso Rápido Compacto (otimizado para visualização no celular) */}
                   <nav
                     aria-label="Menus principais da página"
-                    className="mt-6 border-t border-white/10 pt-5 text-left"
+                    className="mt-5 border-t border-white/10 pt-4 text-left"
                   >
-                    <p className="mb-3 text-center text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand md:text-left">
+                    <p className="mb-2.5 text-center text-[0.6rem] font-bold uppercase tracking-[0.2em] text-brand md:text-left">
                       Menu de acesso rápido
                     </p>
-                    <div className="grid gap-2.5 sm:grid-cols-2">
+                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                       <a
                         href="https://www.youtube.com/watch?v=m75KthGtZs4"
                         target="_blank"
@@ -531,122 +558,122 @@ export default function Gibaz4() {
                             "Vídeo: Calcular seu peso ideal (Menu)",
                           )
                         }
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-brand/40 bg-brand/[0.08] px-3.5 py-3 transition hover:border-brand hover:bg-brand/15"
+                        className="group flex items-center justify-between gap-2 rounded-xl border border-brand/40 bg-brand/[0.08] px-2.5 py-2 transition hover:border-brand hover:bg-brand/15 sm:px-3 sm:py-2.5"
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-brand text-[#031110]">
-                            <Play className="size-4 fill-current" aria-hidden="true" />
+                        <div className="flex min-w-0 items-center gap-2">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-brand text-[#031110] sm:size-8">
+                            <Play className="size-3.5 fill-current" aria-hidden="true" />
                           </span>
-                          <div>
-                            <span className="block text-xs font-bold text-white sm:text-sm">
-                              Calcular seu peso ideal
+                          <div className="min-w-0">
+                            <span className="block truncate text-[0.7rem] font-bold leading-tight text-white sm:text-xs">
+                              Peso Ideal
                             </span>
-                            <span className="block text-[0.68rem] text-brand-soft">
-                              Assistir vídeo informativo
+                            <span className="block truncate text-[0.6rem] text-brand-soft">
+                              Vídeo explicativo
                             </span>
                           </div>
                         </div>
-                        <ArrowUpRight className="size-4 shrink-0 text-brand transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        <ArrowUpRight className="size-3.5 shrink-0 text-brand" />
                       </a>
 
                       <a
                         href="#canais"
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                        className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
-                            <Youtube className="size-4" aria-hidden="true" />
+                        <div className="flex min-w-0 items-center gap-2">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand sm:size-8">
+                            <Youtube className="size-3.5" aria-hidden="true" />
                           </span>
-                          <div>
-                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                          <div className="min-w-0">
+                            <span className="block truncate text-[0.7rem] font-semibold leading-tight text-white sm:text-xs">
                               Meus Canais
                             </span>
-                            <span className="block text-[0.68rem] text-[#8ba0a8]">
-                              YouTube e redes oficiais
+                            <span className="block truncate text-[0.6rem] text-[#8ba0a8]">
+                              Redes oficiais
                             </span>
                           </div>
                         </div>
-                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                        <ArrowDown className="size-3.5 shrink-0 text-[#8ba0a8] group-hover:text-brand" />
                       </a>
 
                       <a
                         href="#sobre"
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                        className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
-                            <Award className="size-4" aria-hidden="true" />
+                        <div className="flex min-w-0 items-center gap-2">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand sm:size-8">
+                            <Award className="size-3.5" aria-hidden="true" />
                           </span>
-                          <div>
-                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                          <div className="min-w-0">
+                            <span className="block truncate text-[0.7rem] font-semibold leading-tight text-white sm:text-xs">
                               Conheça o Giba
                             </span>
-                            <span className="block text-[0.68rem] text-[#8ba0a8]">
-                              Trajetória, ciclismo e carreira
+                            <span className="block truncate text-[0.6rem] text-[#8ba0a8]">
+                              Minha história
                             </span>
                           </div>
                         </div>
-                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                        <ArrowDown className="size-3.5 shrink-0 text-[#8ba0a8] group-hover:text-brand" />
                       </a>
 
                       <a
                         href="#social"
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                        className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
-                            <HeartHandshake className="size-4" aria-hidden="true" />
+                        <div className="flex min-w-0 items-center gap-2">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand sm:size-8">
+                            <HeartHandshake className="size-3.5" aria-hidden="true" />
                           </span>
-                          <div>
-                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                          <div className="min-w-0">
+                            <span className="block truncate text-[0.7rem] font-semibold leading-tight text-white sm:text-xs">
                               Projetos Sociais
                             </span>
-                            <span className="block text-[0.68rem] text-[#8ba0a8]">
-                              Origens e iniciativas que apoio
+                            <span className="block truncate text-[0.6rem] text-[#8ba0a8]">
+                              Iniciativas
                             </span>
                           </div>
                         </div>
-                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                        <ArrowDown className="size-3.5 shrink-0 text-[#8ba0a8] group-hover:text-brand" />
                       </a>
 
                       <a
                         href="#recomendacoes"
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                        className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
-                            <ShoppingBag className="size-4" aria-hidden="true" />
+                        <div className="flex min-w-0 items-center gap-2">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand sm:size-8">
+                            <ShoppingBag className="size-3.5" aria-hidden="true" />
                           </span>
-                          <div>
-                            <span className="block text-xs font-semibold text-white sm:text-sm">
-                              Produtos que Indico
+                          <div className="min-w-0">
+                            <span className="block truncate text-[0.7rem] font-semibold leading-tight text-white sm:text-xs">
+                              Indicações
                             </span>
-                            <span className="block text-[0.68rem] text-[#8ba0a8]">
-                              Curadoria Shopee e Mercado Livre
+                            <span className="block truncate text-[0.6rem] text-[#8ba0a8]">
+                              Produtos úteis
                             </span>
                           </div>
                         </div>
-                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                        <ArrowDown className="size-3.5 shrink-0 text-[#8ba0a8] group-hover:text-brand" />
                       </a>
 
                       <a
                         href="#downloads"
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                        className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
-                            <FileSpreadsheet className="size-4" aria-hidden="true" />
+                        <div className="flex min-w-0 items-center gap-2">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand sm:size-8">
+                            <FileSpreadsheet className="size-3.5" aria-hidden="true" />
                           </span>
-                          <div>
-                            <span className="block text-xs font-semibold text-white sm:text-sm">
-                              Materiais e Downloads
+                          <div className="min-w-0">
+                            <span className="block truncate text-[0.7rem] font-semibold leading-tight text-white sm:text-xs">
+                              Materiais
                             </span>
-                            <span className="block text-[0.68rem] text-[#8ba0a8]">
-                              Planilhas de treino e e-book
+                            <span className="block truncate text-[0.6rem] text-[#8ba0a8]">
+                              Planilhas e e-book
                             </span>
                           </div>
                         </div>
-                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                        <ArrowDown className="size-3.5 shrink-0 text-[#8ba0a8] group-hover:text-brand" />
                       </a>
                     </div>
                   </nav>
@@ -1212,6 +1239,21 @@ function YouTubeBrandSvg({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" />
+    </svg>
+  );
+}
+
+function TikTokBrandSvg({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="30"
+      height="30"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
     </svg>
   );
 }

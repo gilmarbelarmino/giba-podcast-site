@@ -215,6 +215,13 @@ export default function Gibaz4Painel() {
       icon: Instagram,
     },
     {
+      id: "tiktok",
+      label: "TikTok (@gibaaz4)",
+      count: t.tiktok,
+      color: "bg-[#00f2fe]",
+      icon: Share2,
+    },
+    {
       id: "youtube_gibaz4",
       label: "YouTube — Canal gibaz4",
       count: youtubeGibaz4Count,
