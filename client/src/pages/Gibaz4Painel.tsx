@@ -171,8 +171,15 @@ export default function Gibaz4Painel() {
 
   const totalViews = t.page_view;
   const totalWhatsapp = t.whatsapp_floating + t.whatsapp_hero + t.whatsapp_contact;
+  const youtubeGibaz4Count = t.youtube_gibaz4 ?? 0;
   const totalSocial =
-    t.instagram + t.youtube_podcast + t.video_peso_ideal + t.tiktok + t.site_podcast + t.email;
+    t.instagram +
+    youtubeGibaz4Count +
+    t.youtube_podcast +
+    t.video_peso_ideal +
+    t.tiktok +
+    t.site_podcast +
+    t.email;
   const totalAllClicks = totalWhatsapp + totalSocial + t.other_clicks;
 
   const whatsappCtr = totalViews > 0 ? ((totalWhatsapp / totalViews) * 100).toFixed(1) : "0.0";
@@ -188,7 +195,7 @@ export default function Gibaz4Painel() {
     },
     {
       id: "whatsapp_hero",
-      label: "WhatsApp — Botão do Topo",
+      label: "WhatsApp — Ícone do Topo",
       count: t.whatsapp_hero,
       color: "bg-[#25D366]",
       icon: MessageCircle,
@@ -206,6 +213,13 @@ export default function Gibaz4Painel() {
       count: t.instagram,
       color: "bg-[#E1306C]",
       icon: Instagram,
+    },
+    {
+      id: "youtube_gibaz4",
+      label: "YouTube — Canal gibaz4",
+      count: youtubeGibaz4Count,
+      color: "bg-[#FF0000]",
+      icon: Youtube,
     },
     {
       id: "youtube_podcast",

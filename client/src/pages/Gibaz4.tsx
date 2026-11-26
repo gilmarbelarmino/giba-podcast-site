@@ -416,97 +416,240 @@ export default function Gibaz4() {
                     {data.profile.introText}
                   </p>
 
-                  {/* Botões para os principais destinos */}
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    <a
-                      href={data.profile.podcastYoutubeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() =>
-                        trackGibaz4Event("youtube_podcast", "YouTube Giba Podcast (Topo)")
-                      }
-                      className="btn btn-primary min-h-[48px] w-full justify-center text-sm sm:text-base"
-                    >
-                      <Play className="size-4 fill-current" aria-hidden="true" />
-                      Assistir ao Giba Podcast
-                      <ArrowUpRight className="size-4" aria-hidden="true" />
-                    </a>
-
-                    {whatsappUrl ? (
-                      <a
-                        href={whatsappUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() =>
-                          trackGibaz4Event("whatsapp_hero", "WhatsApp (Botão do Topo)")
-                        }
-                        className="btn min-h-[48px] w-full justify-center border border-[#25D366]/60 bg-[#25D366]/15 text-sm font-semibold text-white shadow-[0_0_30px_-10px_rgba(37,211,102,0.7)] transition hover:-translate-y-0.5 hover:bg-[#25D366] hover:text-[#04140a] sm:text-base"
-                      >
-                        <span className="relative flex size-3">
-                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-75" />
-                          <span className="relative inline-flex size-3 rounded-full bg-[#25D366]" />
-                        </span>
-                        <MessageCircle className="size-4" aria-hidden="true" />
-                        Falar comigo no WhatsApp
-                        <ArrowUpRight className="size-4" aria-hidden="true" />
-                      </a>
-                    ) : null}
-
+                  {/* 4 Ícones Diretos Clicáveis: Instagram, WhatsApp, YouTube gibaz4 e YouTube Giba Podcast */}
+                  <div className="mt-6 grid grid-cols-4 gap-2.5 sm:gap-4">
+                    {/* 1. Ícone do Instagram */}
                     {data.contact.instagramUrl ? (
                       <a
                         href={data.contact.instagramUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() =>
-                          trackGibaz4Event("instagram", "Instagram @gibaz4 (Topo)")
+                          trackGibaz4Event("instagram", "Instagram @gibaz4 (Ícone do Topo)")
                         }
-                        className="btn btn-ghost min-h-[48px] w-full justify-center text-sm sm:text-base"
+                        aria-label="Instagram @gibaz4"
+                        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/12 bg-white/[0.03] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#E1306C]/70 hover:bg-[#E1306C]/10 hover:shadow-[0_12px_30px_-10px_rgba(225,48,108,0.6)]"
                       >
-                        <Instagram className="size-4 text-brand" aria-hidden="true" />
-                        Instagram (@gibaz4)
-                        <ArrowUpRight className="size-4" aria-hidden="true" />
+                        <span
+                          className="grid size-13 place-items-center rounded-2xl text-white shadow-[0_8px_22px_-6px_rgba(225,48,108,0.75)] transition-transform duration-300 group-hover:scale-110 sm:size-14"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+                          }}
+                        >
+                          <InstagramBrandSvg className="size-7 sm:size-8" />
+                        </span>
+                        <span className="text-[0.72rem] font-bold leading-tight text-white group-hover:text-[#ff9ec0] sm:text-xs">
+                          Instagram
+                        </span>
                       </a>
                     ) : null}
 
+                    {/* 2. Ícone Direto do WhatsApp */}
+                    {whatsappUrl ? (
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackGibaz4Event("whatsapp_hero", "WhatsApp (Ícone do Topo)")
+                        }
+                        aria-label="Falar no WhatsApp"
+                        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-[#25D366]/35 bg-[#25D366]/[0.06] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#25D366]/15 hover:shadow-[0_12px_30px_-10px_rgba(37,211,102,0.65)]"
+                      >
+                        <span className="relative grid size-13 place-items-center rounded-2xl bg-[#25D366] text-[#04140a] shadow-[0_8px_22px_-6px_rgba(37,211,102,0.85)] transition-transform duration-300 group-hover:scale-110 sm:size-14">
+                          <span
+                            className="pointer-events-none absolute -right-1 -top-1 flex size-3.5"
+                            aria-hidden="true"
+                          >
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-80" />
+                            <span className="relative inline-flex size-3.5 rounded-full border-2 border-[#0a0f12] bg-[#25D366]" />
+                          </span>
+                          <WhatsAppBrandSvg className="size-7 sm:size-8" />
+                        </span>
+                        <span className="text-[0.72rem] font-bold leading-tight text-white group-hover:text-[#69f09c] sm:text-xs">
+                          WhatsApp
+                        </span>
+                      </a>
+                    ) : null}
+
+                    {/* 3. Ícone do YouTube — gibaz4 */}
                     <a
-                      href="https://www.youtube.com/watch?v=m75KthGtZs4"
+                      href={data.profile.personalYoutubeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() =>
-                        trackGibaz4Event(
-                          "video_peso_ideal",
-                          "Vídeo: Calcular seu peso ideal (Topo)",
-                        )
+                        trackGibaz4Event("youtube_gibaz4", "YouTube gibaz4 (Ícone do Topo)")
                       }
-                      className="btn btn-ghost min-h-[48px] w-full justify-center border-brand/40 bg-brand/[0.07] text-sm text-brand-soft hover:bg-brand/15 sm:text-base"
+                      aria-label="Canal do YouTube gibaz4"
+                      className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/12 bg-white/[0.03] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#FF0000]/70 hover:bg-[#FF0000]/10 hover:shadow-[0_12px_30px_-10px_rgba(255,0,0,0.6)]"
                     >
-                      <Play className="size-4 text-brand" aria-hidden="true" />
-                      Calcular seu peso ideal
-                      <ArrowUpRight className="size-4" aria-hidden="true" />
+                      <span className="grid size-13 place-items-center rounded-2xl bg-[#FF0000] text-white shadow-[0_8px_22px_-6px_rgba(255,0,0,0.8)] transition-transform duration-300 group-hover:scale-110 sm:size-14">
+                        <YouTubeBrandSvg className="size-7 sm:size-8" />
+                      </span>
+                      <span className="text-[0.72rem] font-bold leading-tight text-white group-hover:text-[#ff8080] sm:text-xs">
+                        gibaz4
+                      </span>
+                    </a>
+
+                    {/* 4. Ícone do YouTube — Giba Podcast */}
+                    <a
+                      href={data.profile.podcastYoutubeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() =>
+                        trackGibaz4Event("youtube_podcast", "YouTube Giba Podcast (Ícone do Topo)")
+                      }
+                      aria-label="Canal do YouTube Giba Podcast"
+                      className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-brand/35 bg-brand/[0.06] px-2 py-3.5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:bg-brand/15 hover:shadow-[0_12px_30px_-10px_rgba(46,230,214,0.6)]"
+                    >
+                      <span className="relative grid size-13 place-items-center rounded-2xl bg-[#FF0000] text-white shadow-[0_8px_22px_-6px_rgba(255,0,0,0.8)] ring-2 ring-brand/60 transition-transform duration-300 group-hover:scale-110 sm:size-14">
+                        <YouTubeBrandSvg className="size-7 sm:size-8" />
+                      </span>
+                      <span className="text-[0.72rem] font-bold leading-tight text-brand-soft group-hover:text-white sm:text-xs">
+                        Giba Podcast
+                      </span>
                     </a>
                   </div>
 
-                  {/* Atalhos rápidos por âncora */}
-                  <div className="mt-7 flex flex-wrap items-center justify-center gap-2 border-t border-white/10 pt-5 md:justify-start">
-                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7a8c94]">
-                      Explorar:
-                    </span>
-                    <a
-                      href="#canais"
-                      className="rounded-full border border-white/12 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-[#d0dce0] transition hover:border-brand/50 hover:text-brand-soft"
-                    >
-                      Canais
-                    </a>
-                    {ANCHOR_NAV.map(item => (
+                  {/* Menus Organizados da Página (substitui o antigo "Explorar:") */}
+                  <nav
+                    aria-label="Menus principais da página"
+                    className="mt-6 border-t border-white/10 pt-5 text-left"
+                  >
+                    <p className="mb-3 text-center text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand md:text-left">
+                      Menu de acesso rápido
+                    </p>
+                    <div className="grid gap-2.5 sm:grid-cols-2">
                       <a
-                        key={item.href}
-                        href={item.href}
-                        className="rounded-full border border-white/12 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-[#d0dce0] transition hover:border-brand/50 hover:text-brand-soft"
+                        href="https://www.youtube.com/watch?v=m75KthGtZs4"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackGibaz4Event(
+                            "video_peso_ideal",
+                            "Vídeo: Calcular seu peso ideal (Menu)",
+                          )
+                        }
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-brand/40 bg-brand/[0.08] px-3.5 py-3 transition hover:border-brand hover:bg-brand/15"
                       >
-                        {item.label}
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-brand text-[#031110]">
+                            <Play className="size-4 fill-current" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <span className="block text-xs font-bold text-white sm:text-sm">
+                              Calcular seu peso ideal
+                            </span>
+                            <span className="block text-[0.68rem] text-brand-soft">
+                              Assistir vídeo informativo
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="size-4 shrink-0 text-brand transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                       </a>
-                    ))}
-                  </div>
+
+                      <a
+                        href="#canais"
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
+                            <Youtube className="size-4" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                              Meus Canais
+                            </span>
+                            <span className="block text-[0.68rem] text-[#8ba0a8]">
+                              YouTube e redes oficiais
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                      </a>
+
+                      <a
+                        href="#sobre"
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
+                            <Award className="size-4" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                              Conheça o Giba
+                            </span>
+                            <span className="block text-[0.68rem] text-[#8ba0a8]">
+                              Trajetória, ciclismo e carreira
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                      </a>
+
+                      <a
+                        href="#social"
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
+                            <HeartHandshake className="size-4" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                              Projetos Sociais
+                            </span>
+                            <span className="block text-[0.68rem] text-[#8ba0a8]">
+                              Origens e iniciativas que apoio
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                      </a>
+
+                      <a
+                        href="#recomendacoes"
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
+                            <ShoppingBag className="size-4" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                              Produtos que Indico
+                            </span>
+                            <span className="block text-[0.68rem] text-[#8ba0a8]">
+                              Curadoria Shopee e Mercado Livre
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                      </a>
+
+                      <a
+                        href="#downloads"
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-white/12 bg-white/[0.03] px-3.5 py-3 transition hover:border-brand/50 hover:bg-white/[0.06]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-brand/30 bg-brand/10 text-brand">
+                            <FileSpreadsheet className="size-4" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <span className="block text-xs font-semibold text-white sm:text-sm">
+                              Materiais e Downloads
+                            </span>
+                            <span className="block text-[0.68rem] text-[#8ba0a8]">
+                              Planilhas de treino e e-book
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowDown className="size-4 shrink-0 text-[#8ba0a8] transition group-hover:translate-y-0.5 group-hover:text-brand" />
+                      </a>
+                    </div>
+                  </nav>
                 </div>
               </div>
 
@@ -1022,15 +1165,68 @@ export default function Gibaz4() {
   );
 }
 
+function InstagramBrandSvg({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="30"
+      height="30"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+function WhatsAppBrandSvg({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="30"
+      height="30"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.82 14.01c-.24.68-1.41 1.3-1.95 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.61-2.91-1.26-4.81-4.19-4.96-4.38-.15-.2-1.18-1.57-1.18-3 0-1.43.75-2.13 1.02-2.42.27-.29.59-.36.79-.36.2 0 .4.01.57.01.18 0 .43-.07.67.51.24.59.82 2.01.89 2.15.07.15.12.32.02.51-.1.2-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.61.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.2.73-.85.93-1.15.2-.29.39-.24.66-.15.27.1 1.71.81 2 .95.29.15.49.22.56.34.07.12.07.71-.17 1.39z" />
+    </svg>
+  );
+}
+
+function YouTubeBrandSvg({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="30"
+      height="30"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" />
+    </svg>
+  );
+}
+
 function ChannelCard({ channel }: { channel: Gibaz4Channel }) {
   const eventKey: Gibaz4EventKey =
-    channel.platform === "Instagram"
-      ? "instagram"
-      : channel.platform === "YouTube"
-        ? "youtube_podcast"
-        : channel.platform === "TikTok"
-          ? "tiktok"
-          : "other_clicks";
+    channel.id === "youtube-gibaz4"
+      ? "youtube_gibaz4"
+      : channel.platform === "Instagram"
+        ? "instagram"
+        : channel.platform === "YouTube"
+          ? "youtube_podcast"
+          : channel.platform === "TikTok"
+            ? "tiktok"
+            : "other_clicks";
 
   return (
     <article

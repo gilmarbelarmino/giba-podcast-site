@@ -118,6 +118,7 @@ export type Gibaz4Content = {
     heroPhotoAlt: string;
     podcastSiteUrl: string;
     podcastYoutubeUrl: string;
+    personalYoutubeUrl: string;
   };
   contact: {
     /**
@@ -133,6 +134,7 @@ export type Gibaz4Content = {
     /** URL do perfil no TikTok. Deixe vazio ("") até confirmar para ocultar o botão. */
     tiktokUrl: string;
     youtubeUrl: string;
+    personalYoutubeUrl: string;
   };
   channels: Gibaz4Channel[];
   about: {
@@ -200,6 +202,7 @@ export const GIBAZ4_CONTENT: Gibaz4Content = {
     heroPhotoAlt: "Foto de Gilmar (@gibaz4)",
     podcastSiteUrl: "/",
     podcastYoutubeUrl: "https://www.youtube.com/@gibapodcast",
+    personalYoutubeUrl: "https://www.youtube.com/@gibaz4",
   },
 
   contact: {
@@ -210,6 +213,7 @@ export const GIBAZ4_CONTENT: Gibaz4Content = {
     instagramUrl: "https://www.instagram.com/gibaz4/",
     tiktokUrl: "",
     youtubeUrl: "https://www.youtube.com/@gibapodcast",
+    personalYoutubeUrl: "https://www.youtube.com/@gibaz4",
   },
 
   channels: [
@@ -222,8 +226,21 @@ export const GIBAZ4_CONTENT: Gibaz4Content = {
         "Conversas sobre superação, esporte, saúde, tecnologia, negócios e iniciativas que fazem a diferença na sociedade. Episódios completos, cortes e transmissões ao vivo.",
       url: "https://www.youtube.com/@gibapodcast",
       image: "/assets/logo-giba.png",
-      ctaLabel: "Assistir no YouTube",
+      ctaLabel: "Assistir Giba Podcast",
       featured: true,
+      published: true,
+    },
+    {
+      id: "youtube-gibaz4",
+      name: "YouTube • gibaz4",
+      handle: "@gibaz4",
+      platform: "YouTube",
+      description:
+        "Canal pessoal com conteúdos sobre esporte, ciclismo, tecnologia, rotina de treinos e qualidade de vida.",
+      url: "https://www.youtube.com/@gibaz4",
+      image: "/assets/gibaz4/giba-rosto.jpg",
+      ctaLabel: "Acessar canal gibaz4",
+      featured: false,
       published: true,
     },
     {
@@ -234,7 +251,7 @@ export const GIBAZ4_CONTENT: Gibaz4Content = {
       description:
         "Rotina real, retomada dos treinos, bastidores do estúdio, tecnologia e conexões do dia a dia.",
       url: "https://www.instagram.com/gibaz4/",
-      image: "/assets/gibaz4/giba-perfil.jpg",
+      image: "/assets/gibaz4/giba-rosto.jpg",
       ctaLabel: "Acompanhar no Instagram",
       featured: false,
       published: true,

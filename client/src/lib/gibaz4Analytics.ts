@@ -4,6 +4,7 @@ export type Gibaz4EventKey =
   | "whatsapp_hero"
   | "whatsapp_contact"
   | "instagram"
+  | "youtube_gibaz4"
   | "youtube_podcast"
   | "video_peso_ideal"
   | "tiktok"
@@ -20,6 +21,7 @@ export type Gibaz4StatsData = {
     whatsapp_hero: number;
     whatsapp_contact: number;
     instagram: number;
+    youtube_gibaz4?: number;
     youtube_podcast: number;
     video_peso_ideal: number;
     tiktok: number;

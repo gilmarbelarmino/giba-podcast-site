@@ -30,6 +30,7 @@ function defaultStats(): array {
       "whatsapp_hero" => 0,
       "whatsapp_contact" => 0,
       "instagram" => 0,
+      "youtube_gibaz4" => 0,
       "youtube_podcast" => 0,
       "video_peso_ideal" => 0,
       "tiktok" => 0,
