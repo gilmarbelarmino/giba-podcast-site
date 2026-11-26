@@ -1,7 +1,7 @@
 <?php
 /**
  * Endpoint gratuito de monitoramento de cliques e visitas da página /gibaz4
- * Armazena as métricas em JSON local no servidor (compatível com PHP 8+).
+ * Armazena as métricas de todas as ações em JSON local no servidor (PHP 8+).
  */
 
 header("Content-Type: application/json; charset=utf-8");
@@ -30,10 +30,15 @@ function defaultStats(): array {
       "whatsapp_hero" => 0,
       "whatsapp_contact" => 0,
       "instagram" => 0,
+      "tiktok" => 0,
       "youtube_gibaz4" => 0,
       "youtube_podcast" => 0,
       "video_peso_ideal" => 0,
-      "tiktok" => 0,
+      "menu_canais" => 0,
+      "menu_sobre" => 0,
+      "menu_social" => 0,
+      "menu_recomendacoes" => 0,
+      "menu_materiais" => 0,
       "site_podcast" => 0,
       "email" => 0,
       "other_clicks" => 0,
@@ -162,6 +167,7 @@ if ($method === "POST" || !empty($_GET["action"])) {
       "views" => 0,
       "whatsapp" => 0,
       "social" => 0,
+      "menus" => 0,
     ];
   }
 
@@ -169,6 +175,9 @@ if ($method === "POST" || !empty($_GET["action"])) {
     $stats["byDate"][$dayKey]["views"] = (int)($stats["byDate"][$dayKey]["views"] ?? 0) + 1;
   } elseif (strpos($event, "whatsapp_") === 0) {
     $stats["byDate"][$dayKey]["whatsapp"] = (int)($stats["byDate"][$dayKey]["whatsapp"] ?? 0) + 1;
+  } elseif (strpos($event, "menu_") === 0 || $event === "video_peso_ideal" || $event === "site_podcast" || $event === "email") {
+    $stats["byDate"][$dayKey]["menus"] = (int)($stats["byDate"][$dayKey]["menus"] ?? 0) + 1;
+    $stats["byDate"][$dayKey]["social"] = (int)($stats["byDate"][$dayKey]["social"] ?? 0) + 1;
   } else {
     $stats["byDate"][$dayKey]["social"] = (int)($stats["byDate"][$dayKey]["social"] ?? 0) + 1;
   }

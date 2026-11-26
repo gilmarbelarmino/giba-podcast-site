@@ -382,6 +382,9 @@ export default function Gibaz4() {
                   {/* Card do Logo Oficial em destaque — clicável para descer a página */}
                   <a
                     href="#sobre"
+                    onClick={() =>
+                      trackGibaz4Event("menu_sobre", "Logo Oficial: Minha História (#sobre)")
+                    }
                     aria-label="Logo Oficial Gilmar Belarmino — clique para conhecer a trajetória"
                     className="group relative flex flex-col items-center overflow-hidden rounded-2xl border-2 border-brand/50 bg-white px-3.5 py-2.5 shadow-[0_0_40px_-10px_rgba(46,230,214,0.65)] transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:shadow-[0_0_60px_-8px_rgba(46,230,214,0.9)] md:w-full md:p-3.5"
                   >
@@ -555,7 +558,7 @@ export default function Gibaz4() {
                         onClick={() =>
                           trackGibaz4Event(
                             "video_peso_ideal",
-                            "Vídeo: Calcular seu peso ideal (Menu)",
+                            "Menu Rápido: Vídeo Peso Ideal",
                           )
                         }
                         className="group flex items-center justify-between gap-2 rounded-xl border border-brand/40 bg-brand/[0.08] px-2.5 py-2 transition hover:border-brand hover:bg-brand/15 sm:px-3 sm:py-2.5"
@@ -578,6 +581,9 @@ export default function Gibaz4() {
 
                       <a
                         href="#canais"
+                        onClick={() =>
+                          trackGibaz4Event("menu_canais", "Menu Rápido: Meus Canais (#canais)")
+                        }
                         className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
                         <div className="flex min-w-0 items-center gap-2">
@@ -598,6 +604,9 @@ export default function Gibaz4() {
 
                       <a
                         href="#sobre"
+                        onClick={() =>
+                          trackGibaz4Event("menu_sobre", "Menu Rápido: Conheça o Giba (#sobre)")
+                        }
                         className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
                         <div className="flex min-w-0 items-center gap-2">
@@ -618,6 +627,12 @@ export default function Gibaz4() {
 
                       <a
                         href="#social"
+                        onClick={() =>
+                          trackGibaz4Event(
+                            "menu_social",
+                            "Menu Rápido: Projetos Sociais (#social)",
+                          )
+                        }
                         className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
                         <div className="flex min-w-0 items-center gap-2">
@@ -638,6 +653,12 @@ export default function Gibaz4() {
 
                       <a
                         href="#recomendacoes"
+                        onClick={() =>
+                          trackGibaz4Event(
+                            "menu_recomendacoes",
+                            "Menu Rápido: Indicações de Produtos (#recomendacoes)",
+                          )
+                        }
                         className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
                         <div className="flex min-w-0 items-center gap-2">
@@ -658,6 +679,12 @@ export default function Gibaz4() {
 
                       <a
                         href="#downloads"
+                        onClick={() =>
+                          trackGibaz4Event(
+                            "menu_materiais",
+                            "Menu Rápido: Materiais e Planilhas (#downloads)",
+                          )
+                        }
                         className="group flex items-center justify-between gap-2 rounded-xl border border-white/12 bg-white/[0.03] px-2.5 py-2 transition hover:border-brand/50 hover:bg-white/[0.06] sm:px-3 sm:py-2.5"
                       >
                         <div className="flex min-w-0 items-center gap-2">
@@ -684,6 +711,9 @@ export default function Gibaz4() {
               <div className="mt-8 flex justify-center border-t border-white/8 pt-5">
                 <a
                   href="#canais"
+                  onClick={() =>
+                    trackGibaz4Event("menu_canais", "Botão: Explorar a página (#canais)")
+                  }
                   className="group inline-flex items-center gap-2.5 rounded-full border border-brand/30 bg-brand/[0.07] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-soft transition hover:border-brand hover:bg-brand/15"
                 >
                   <span>Role ou clique para explorar a página</span>

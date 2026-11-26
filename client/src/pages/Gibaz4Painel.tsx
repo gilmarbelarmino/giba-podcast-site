@@ -7,11 +7,15 @@ import { GIBAZ4_CONTENT } from "@shared/gibaz4";
 import {
   Activity,
   ArrowLeft,
+  Award,
   BarChart3,
   Clock,
   ExternalLink,
   Eye,
+  FileSpreadsheet,
+  HeartHandshake,
   Instagram,
+  Compass,
   Lock,
   Mail,
   MessageCircle,
@@ -21,6 +25,7 @@ import {
   Play,
   RefreshCw,
   Share2,
+  ShoppingBag,
   Smartphone,
   Trash2,
   Youtube,
@@ -116,8 +121,8 @@ export default function Gibaz4Painel() {
             Painel de Métricas • @gibaz4
           </h1>
           <p className="mt-2 text-sm text-[#9eb0b7]">
-            Acesso exclusivo de Gilmar para acompanhar visitas no link da bio, cliques no WhatsApp e
-            nas redes sociais.
+            Acesso exclusivo de Gilmar para acompanhar visitas no link da bio, cliques no WhatsApp,
+            redes sociais e menus da página.
           </p>
 
           <form onSubmit={handleUnlock} className="mt-6 space-y-3 text-left">
@@ -161,9 +166,15 @@ export default function Gibaz4Painel() {
     whatsapp_hero: 0,
     whatsapp_contact: 0,
     instagram: 0,
+    tiktok: 0,
+    youtube_gibaz4: 0,
     youtube_podcast: 0,
     video_peso_ideal: 0,
-    tiktok: 0,
+    menu_canais: 0,
+    menu_sobre: 0,
+    menu_social: 0,
+    menu_recomendacoes: 0,
+    menu_materiais: 0,
     site_podcast: 0,
     email: 0,
     other_clicks: 0,
@@ -172,20 +183,29 @@ export default function Gibaz4Painel() {
   const totalViews = t.page_view;
   const totalWhatsapp = t.whatsapp_floating + t.whatsapp_hero + t.whatsapp_contact;
   const youtubeGibaz4Count = t.youtube_gibaz4 ?? 0;
-  const totalSocial =
-    t.instagram +
-    youtubeGibaz4Count +
-    t.youtube_podcast +
+  const menuCanaisCount = t.menu_canais ?? 0;
+  const menuSobreCount = t.menu_sobre ?? 0;
+  const menuSocialCount = t.menu_social ?? 0;
+  const menuRecomendacoesCount = t.menu_recomendacoes ?? 0;
+  const menuMateriaisCount = t.menu_materiais ?? 0;
+
+  const totalSocialIcons = t.instagram + t.tiktok + youtubeGibaz4Count + t.youtube_podcast;
+  const totalMenusAndContent =
     t.video_peso_ideal +
-    t.tiktok +
+    menuCanaisCount +
+    menuSobreCount +
+    menuSocialCount +
+    menuRecomendacoesCount +
+    menuMateriaisCount +
     t.site_podcast +
-    t.email;
-  const totalAllClicks = totalWhatsapp + totalSocial + t.other_clicks;
+    t.email +
+    t.other_clicks;
+  const totalAllClicks = totalWhatsapp + totalSocialIcons + totalMenusAndContent;
 
   const whatsappCtr = totalViews > 0 ? ((totalWhatsapp / totalViews) * 100).toFixed(1) : "0.0";
-  const socialCtr = totalViews > 0 ? ((totalSocial / totalViews) * 100).toFixed(1) : "0.0";
+  const socialCtr = totalViews > 0 ? ((totalSocialIcons / totalViews) * 100).toFixed(1) : "0.0";
 
-  const breakdownItems = [
+  const socialAndWhatsappItems = [
     {
       id: "whatsapp_floating",
       label: "WhatsApp — Ícone Flutuante Pulsante",
@@ -202,7 +222,7 @@ export default function Gibaz4Painel() {
     },
     {
       id: "whatsapp_contact",
-      label: "WhatsApp — Seção de Contato",
+      label: "WhatsApp — Botão Seção de Contato",
       count: t.whatsapp_contact,
       color: "bg-[#25D366]",
       icon: MessageCircle,
@@ -235,6 +255,9 @@ export default function Gibaz4Painel() {
       color: "bg-[#FF0000]",
       icon: Youtube,
     },
+  ];
+
+  const menuAndContentItems = [
     {
       id: "video_peso_ideal",
       label: "Vídeo: Calcular Peso Ideal",
@@ -243,22 +266,58 @@ export default function Gibaz4Painel() {
       icon: Play,
     },
     {
-      id: "site_podcast",
-      label: "Site Principal do Giba Podcast",
-      count: t.site_podcast,
+      id: "menu_sobre",
+      label: "Menu / Logo: Conheça o Giba (Minha História)",
+      count: menuSobreCount,
       color: "bg-[#38bdf8]",
+      icon: Award,
+    },
+    {
+      id: "menu_canais",
+      label: "Menu Rápido: Meus Canais",
+      count: menuCanaisCount,
+      color: "bg-[#fb923c]",
+      icon: Youtube,
+    },
+    {
+      id: "menu_social",
+      label: "Menu Rápido: Projetos Sociais",
+      count: menuSocialCount,
+      color: "bg-[#34d399]",
+      icon: HeartHandshake,
+    },
+    {
+      id: "menu_recomendacoes",
+      label: "Menu Rápido: Indicações de Produtos",
+      count: menuRecomendacoesCount,
+      color: "bg-[#facc15]",
+      icon: ShoppingBag,
+    },
+    {
+      id: "menu_materiais",
+      label: "Menu Rápido: Materiais e Planilhas",
+      count: menuMateriaisCount,
+      color: "bg-[#c084fc]",
+      icon: FileSpreadsheet,
+    },
+    {
+      id: "site_podcast",
+      label: "Acesso ao Site Principal do Giba Podcast",
+      count: t.site_podcast,
+      color: "bg-[#60a5fa]",
       icon: Mic,
     },
     {
       id: "email",
-      label: "E-mail de Contato",
+      label: "Clique no E-mail de Contato",
       count: t.email,
       color: "bg-[#a78bfa]",
       icon: Mail,
     },
   ];
 
-  const maxBreakdown = Math.max(1, ...breakdownItems.map(item => item.count));
+  const maxSocial = Math.max(1, ...socialAndWhatsappItems.map(item => item.count));
+  const maxMenu = Math.max(1, ...menuAndContentItems.map(item => item.count));
   const dailyEntries = Object.entries(stats?.byDate ?? {})
     .sort(([a], [b]) => (a < b ? 1 : -1))
     .slice(0, 14);
@@ -279,7 +338,7 @@ export default function Gibaz4Painel() {
                 Painel de Monitoramento • @gibaz4
               </h1>
               <p className="text-[0.7rem] text-[#8ba0a8]">
-                Métricas em tempo real do link na bio
+                Indicadores de todas as ações do link na bio (atualiza a cada 4s)
               </p>
             </div>
           </div>
@@ -307,17 +366,17 @@ export default function Gibaz4Painel() {
       </header>
 
       <main className="container-x pt-8">
-        <div className="mx-auto max-w-5xl space-y-8">
+        <div className="mx-auto max-w-6xl space-y-8">
           {error ? (
             <div className="rounded-2xl border border-[#ff5d5d]/40 bg-[#ff5d5d]/10 p-4 text-sm text-[#ffb3b3]">
               {error}
             </div>
           ) : null}
 
-          {/* 3 Perguntas Principais do Gilmar em Destaque */}
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {/* 1. Quantas pessoas clicaram no link da bio */}
-            <article className="rounded-2xl border border-brand/35 bg-gradient-to-br from-brand/[0.12] via-[#0b1215] to-[#080c0e] p-6">
+          {/* 4 Indicadores Principais no Topo */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {/* 1. Acessos no Link */}
+            <article className="rounded-2xl border border-brand/35 bg-gradient-to-br from-brand/[0.12] via-[#0b1215] to-[#080c0e] p-5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-brand-soft">
                   1. Acessos no Link
@@ -326,15 +385,14 @@ export default function Gibaz4Painel() {
                   <Eye className="size-5" />
                 </span>
               </div>
-              <p className="font-display mt-4 text-4xl text-white sm:text-5xl">{totalViews}</p>
+              <p className="font-display mt-3 text-4xl text-white sm:text-5xl">{totalViews}</p>
               <p className="mt-2 text-xs text-[#9eb0b7]">
-                Visitas em <strong className="text-white">/gibaz4</strong> ({t.unique_view}{" "}
-                visitantes únicos)
+                Visitas em <strong className="text-white">/gibaz4</strong> ({t.unique_view} únicos)
               </p>
             </article>
 
-            {/* 2. Quantas pessoas clicaram no ícone do WhatsApp */}
-            <article className="rounded-2xl border border-[#25D366]/40 bg-gradient-to-br from-[#25D366]/[0.14] via-[#0b1410] to-[#080c0e] p-6">
+            {/* 2. Cliques no WhatsApp */}
+            <article className="rounded-2xl border border-[#25D366]/40 bg-gradient-to-br from-[#25D366]/[0.14] via-[#0b1410] to-[#080c0e] p-5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#69f09c]">
                   2. Cliques WhatsApp
@@ -343,63 +401,69 @@ export default function Gibaz4Painel() {
                   <MessageCircle className="size-5" />
                 </span>
               </div>
-              <p className="font-display mt-4 text-4xl text-white sm:text-5xl">{totalWhatsapp}</p>
+              <p className="font-display mt-3 text-4xl text-white sm:text-5xl">{totalWhatsapp}</p>
               <p className="mt-2 text-xs text-[#9eb0b7]">
-                <strong className="text-[#69f09c]">{t.whatsapp_floating}</strong> no ícone pulsante
-                · Conversão: <strong className="text-white">{whatsappCtr}%</strong>
+                <strong className="text-[#69f09c]">{t.whatsapp_floating}</strong> pulsante ·{" "}
+                <strong className="text-[#69f09c]">{t.whatsapp_hero}</strong> topo · Taxa:{" "}
+                <strong className="text-white">{whatsappCtr}%</strong>
               </p>
             </article>
 
-            {/* 3. Quantas pessoas estão clicando nas redes sociais */}
-            <article className="rounded-2xl border border-[#E1306C]/35 bg-gradient-to-br from-[#E1306C]/[0.12] via-[#130b12] to-[#080c0e] p-6">
+            {/* 3. Cliques nas Redes Sociais */}
+            <article className="rounded-2xl border border-[#E1306C]/35 bg-gradient-to-br from-[#E1306C]/[0.12] via-[#130b12] to-[#080c0e] p-5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#ff85b1]">
-                  3. Redes e Canais
+                  3. Redes Sociais
                 </span>
                 <span className="grid size-10 place-items-center rounded-xl bg-[#E1306C]/20 text-[#ff6b9d]">
                   <Share2 className="size-5" />
                 </span>
               </div>
-              <p className="font-display mt-4 text-4xl text-white sm:text-5xl">{totalSocial}</p>
+              <p className="font-display mt-3 text-4xl text-white sm:text-5xl">
+                {totalSocialIcons}
+              </p>
               <p className="mt-2 text-xs text-[#9eb0b7]">
-                Instagram, YouTube e vídeos · Taxa: <strong className="text-white">{socialCtr}%</strong>
+                Instagram, TikTok e 2 canais YouTube · Taxa:{" "}
+                <strong className="text-white">{socialCtr}%</strong>
               </p>
             </article>
 
-            {/* 4. Total de cliques somados */}
-            <article className="rounded-2xl border border-white/10 bg-[#0b1114] p-6">
+            {/* 4. Menus Rápidos, Vídeo & Ações */}
+            <article className="rounded-2xl border border-white/12 bg-[#0b1114] p-5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#a8b8be]">
-                  Total de Cliques
+                  4. Menus & Todas Ações
                 </span>
-                <span className="grid size-10 place-items-center rounded-xl bg-white/5 text-white">
+                <span className="grid size-10 place-items-center rounded-xl bg-white/5 text-brand">
                   <MousePointerClick className="size-5" />
                 </span>
               </div>
-              <p className="font-display mt-4 text-4xl text-white sm:text-5xl">{totalAllClicks}</p>
+              <p className="font-display mt-3 text-4xl text-white sm:text-5xl">{totalAllClicks}</p>
               <p className="mt-2 text-xs text-[#9eb0b7]">
-                Soma de todas as ações clicadas na página
+                <strong className="text-white">{totalMenusAndContent}</strong> cliques nos menus e
+                vídeo
               </p>
             </article>
           </div>
 
-          {/* Detalhamento de Cliques por Botão e Rede Social */}
-          <div className="grid gap-6 lg:grid-cols-[1.45fr_1fr]">
+          {/* 2 Paineis Lado a Lado: Redes Sociais + WhatsApp  E  Menus Rápidos + Conteúdos */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Bloco 1: Redes Sociais e WhatsApp */}
             <section className="rounded-2xl border border-white/10 bg-[#0b1114] p-6">
               <div className="flex items-center gap-2.5">
                 <BarChart3 className="size-5 text-brand" />
-                <h2 className="text-lg font-semibold text-white">
-                  Cliques por botão e rede social
+                <h2 className="text-base font-semibold text-white sm:text-lg">
+                  Indicadores: WhatsApp e Redes Sociais
                 </h2>
               </div>
               <p className="mt-1 text-xs text-[#8ba0a8]">
-                Veja exatamente quais botões os visitantes mais clicam dentro de /gibaz4
+                Cliques em cada um dos 5 ícones principais e botões de WhatsApp
               </p>
 
               <div className="mt-6 space-y-4">
-                {breakdownItems.map(item => {
+                {socialAndWhatsappItems.map(item => {
                   const Icon = item.icon;
-                  const widthPct = Math.round((item.count / maxBreakdown) * 100);
+                  const widthPct = Math.round((item.count / maxSocial) * 100);
                   return (
                     <div key={item.id} className="space-y-1.5">
                       <div className="flex items-center justify-between text-xs sm:text-sm">
@@ -423,82 +487,118 @@ export default function Gibaz4Painel() {
               </div>
             </section>
 
-            {/* Origem dos visitantes e Aparelhos */}
-            <div className="flex flex-col gap-6">
-              <section className="rounded-2xl border border-white/10 bg-[#0b1114] p-6">
-                <h2 className="text-base font-semibold text-white">De onde vêm os acessos</h2>
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                  <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
-                    <div className="flex items-center gap-2 text-xs text-[#9eb0b7]">
-                      <Instagram className="size-4 text-[#E1306C]" />
-                      App Instagram
-                    </div>
-                    <p className="font-display mt-2 text-2xl text-white">
-                      {stats?.sources.instagram ?? 0}
-                    </p>
-                  </div>
-                  <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
-                    <div className="flex items-center gap-2 text-xs text-[#9eb0b7]">
-                      <ExternalLink className="size-4 text-brand" />
-                      Link Direto / Outros
-                    </div>
-                    <p className="font-display mt-2 text-2xl text-white">
-                      {stats?.sources.direct_or_other ?? 0}
-                    </p>
-                  </div>
-                </div>
+            {/* Bloco 2: Menu de Acesso Rápido, Vídeo Peso Ideal e Seções da Página */}
+            <section className="rounded-2xl border border-white/10 bg-[#0b1114] p-6">
+              <div className="flex items-center gap-2.5">
+                <Compass className="size-5 text-brand" />
+                <h2 className="text-base font-semibold text-white sm:text-lg">
+                  Indicadores: Menu de Acesso Rápido e Conteúdos
+                </h2>
+              </div>
+              <p className="mt-1 text-xs text-[#8ba0a8]">
+                Cliques no vídeo de Peso Ideal, logo Minha História, menus e seções
+              </p>
 
-                <h3 className="mt-6 text-base font-semibold text-white">Aparelhos utilizados</h3>
-                <div className="mt-3 grid grid-cols-2 gap-3">
-                  <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
-                    <div className="flex items-center gap-2 text-xs text-[#9eb0b7]">
-                      <Smartphone className="size-4 text-brand" />
-                      Celular
-                    </div>
-                    <p className="font-display mt-2 text-2xl text-white">
-                      {stats?.devices.mobile ?? 0}
-                    </p>
-                  </div>
-                  <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
-                    <div className="flex items-center gap-2 text-xs text-[#9eb0b7]">
-                      <Monitor className="size-4 text-brand" />
-                      Computador
-                    </div>
-                    <p className="font-display mt-2 text-2xl text-white">
-                      {stats?.devices.desktop ?? 0}
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Resumo Diário */}
-              <section className="flex-1 rounded-2xl border border-white/10 bg-[#0b1114] p-6">
-                <h2 className="text-base font-semibold text-white">Movimento por dia</h2>
-                {dailyEntries.length === 0 ? (
-                  <p className="mt-4 text-xs text-[#8ba0a8]">
-                    Os dados diários aparecerão aqui conforme os acessos acontecerem.
-                  </p>
-                ) : (
-                  <div className="mt-4 space-y-2.5 text-xs">
-                    {dailyEntries.map(([date, counts]) => (
-                      <div
-                        key={date}
-                        className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.02] px-3.5 py-2.5"
-                      >
-                        <span className="font-semibold text-white">
-                          {date.split("-").reverse().join("/")}
+              <div className="mt-6 space-y-4">
+                {menuAndContentItems.map(item => {
+                  const Icon = item.icon;
+                  const widthPct = Math.round((item.count / maxMenu) * 100);
+                  return (
+                    <div key={item.id} className="space-y-1.5">
+                      <div className="flex items-center justify-between text-xs sm:text-sm">
+                        <span className="flex items-center gap-2 font-medium text-[#d4e0e5]">
+                          <Icon className="size-4 text-brand" />
+                          {item.label}
                         </span>
-                        <div className="flex items-center gap-3">
-                          <span className="text-brand-soft">{counts.views} visitas</span>
-                          <span className="text-[#69f09c]">{counts.whatsapp} WhatsApp</span>
-                          <span className="text-[#ff85b1]">{counts.social} redes</span>
-                        </div>
+                        <span className="font-bold text-white">
+                          {item.count} {item.count === 1 ? "clique" : "cliques"}
+                        </span>
                       </div>
-                    ))}
+                      <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/[0.05]">
+                        <div
+                          className={`h-full rounded-full transition-all duration-500 ${item.color}`}
+                          style={{ width: `${item.count > 0 ? Math.max(6, widthPct) : 0}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          </div>
+
+          {/* Origem dos visitantes, Aparelhos e Movimento por Dia */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            <section className="rounded-2xl border border-white/10 bg-[#0b1114] p-6">
+              <h2 className="text-base font-semibold text-white">
+                Origem dos acessos e Aparelhos
+              </h2>
+              <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
+                  <div className="flex items-center gap-1.5 text-xs text-[#9eb0b7]">
+                    <Instagram className="size-3.5 text-[#E1306C]" />
+                    Instagram
                   </div>
-                )}
-              </section>
-            </div>
+                  <p className="font-display mt-2 text-2xl text-white">
+                    {stats?.sources.instagram ?? 0}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
+                  <div className="flex items-center gap-1.5 text-xs text-[#9eb0b7]">
+                    <ExternalLink className="size-3.5 text-brand" />
+                    Link Direto
+                  </div>
+                  <p className="font-display mt-2 text-2xl text-white">
+                    {stats?.sources.direct_or_other ?? 0}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
+                  <div className="flex items-center gap-1.5 text-xs text-[#9eb0b7]">
+                    <Smartphone className="size-3.5 text-brand" />
+                    Celular
+                  </div>
+                  <p className="font-display mt-2 text-2xl text-white">
+                    {stats?.devices.mobile ?? 0}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
+                  <div className="flex items-center gap-1.5 text-xs text-[#9eb0b7]">
+                    <Monitor className="size-3.5 text-brand" />
+                    Computador
+                  </div>
+                  <p className="font-display mt-2 text-2xl text-white">
+                    {stats?.devices.desktop ?? 0}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="rounded-2xl border border-white/10 bg-[#0b1114] p-6">
+              <h2 className="text-base font-semibold text-white">Movimento por dia</h2>
+              {dailyEntries.length === 0 ? (
+                <p className="mt-4 text-xs text-[#8ba0a8]">
+                  Os dados diários aparecerão aqui conforme os acessos acontecerem.
+                </p>
+              ) : (
+                <div className="mt-4 space-y-2.5 text-xs">
+                  {dailyEntries.map(([date, counts]) => (
+                    <div
+                      key={date}
+                      className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-white/8 bg-white/[0.02] px-3.5 py-2.5"
+                    >
+                      <span className="font-semibold text-white">
+                        {date.split("-").reverse().join("/")}
+                      </span>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="text-brand-soft">{counts.views} visitas</span>
+                        <span className="text-[#69f09c]">{counts.whatsapp} WhatsApp</span>
+                        <span className="text-[#ff85b1]">{counts.social} cliques</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
           </div>
 
           {/* Últimas ações em tempo real */}
@@ -508,10 +608,10 @@ export default function Gibaz4Painel() {
                 <Activity className="size-5 text-brand" />
                 <div>
                   <h2 className="text-lg font-semibold text-white">
-                    Últimos acessos e cliques registrados
+                    Registro ao vivo de todas as ações
                   </h2>
                   <p className="text-xs text-[#8ba0a8]">
-                    Histórico das últimas 40 interações na página /gibaz4
+                    Histórico das últimas 40 interações realizadas na página /gibaz4
                   </p>
                 </div>
               </div>

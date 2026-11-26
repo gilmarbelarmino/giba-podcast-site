@@ -4,10 +4,15 @@ export type Gibaz4EventKey =
   | "whatsapp_hero"
   | "whatsapp_contact"
   | "instagram"
+  | "tiktok"
   | "youtube_gibaz4"
   | "youtube_podcast"
   | "video_peso_ideal"
-  | "tiktok"
+  | "menu_canais"
+  | "menu_sobre"
+  | "menu_social"
+  | "menu_recomendacoes"
+  | "menu_materiais"
   | "site_podcast"
   | "email"
   | "other_clicks";
@@ -21,10 +26,15 @@ export type Gibaz4StatsData = {
     whatsapp_hero: number;
     whatsapp_contact: number;
     instagram: number;
+    tiktok: number;
     youtube_gibaz4?: number;
     youtube_podcast: number;
     video_peso_ideal: number;
-    tiktok: number;
+    menu_canais?: number;
+    menu_sobre?: number;
+    menu_social?: number;
+    menu_recomendacoes?: number;
+    menu_materiais?: number;
     site_podcast: number;
     email: number;
     other_clicks: number;
@@ -43,6 +53,7 @@ export type Gibaz4StatsData = {
       views: number;
       whatsapp: number;
       social: number;
+      menus?: number;
     }
   >;
   recent: Array<{
