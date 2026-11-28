@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ong-lar",
+    "instagramUrl": "https://www.instagram.com/",
+    "handle": "@larnossasenhora",
+    "fullName": "Lar Nossa Senhora Aparecida",
+    "shortName": "Lar",
+    "logo": "/assets/gibaz4/giba-ciclismo-equipe-lar.jpg",
+    "published": true,
+    "isPlaceholder": true
+  },
+  {
+    "id": "ong-2",
+    "instagramUrl": "https://www.instagram.com/",
+    "handle": "@ongparceira",
+    "fullName": "Projeto Arrastão",
+    "shortName": "Arrastão",
+    "logo": "",
+    "published": true,
+    "isPlaceholder": true
+  },
+  {
+    "id": "ong-3",
+    "instagramUrl": "https://www.instagram.com/",
+    "handle": "@talentosdocapao",
+    "fullName": "Talentos do Capão",
+    "shortName": "Talentos",
+    "logo": "",
+    "published": true,
+    "isPlaceholder": true
+  }
+]

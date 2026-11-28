@@ -1,0 +1,57 @@
+[
+  {
+    "id": "prod-1",
+    "category": "naturais",
+    "url": "https://www.mercadolivre.com.br/",
+    "fullName": "Mel Puro Orgânico Natural 500g",
+    "shortName": "Mel",
+    "price": "R$ 39,90",
+    "image": "",
+    "published": true,
+    "isPlaceholder": true
+  },
+  {
+    "id": "prod-2",
+    "category": "suplementos",
+    "url": "https://www.mercadolivre.com.br/",
+    "fullName": "Creatina Monohidratada 300g",
+    "shortName": "Creatina",
+    "price": "R$ 89,90",
+    "image": "",
+    "published": true,
+    "isPlaceholder": true
+  },
+  {
+    "id": "prod-3",
+    "category": "bikes",
+    "url": "https://www.mercadolivre.com.br/",
+    "fullName": "Capacete Ciclismo MTB Ventilado",
+    "shortName": "Capacete",
+    "price": "R$ 159,90",
+    "image": "",
+    "published": true,
+    "isPlaceholder": true
+  },
+  {
+    "id": "prod-4",
+    "category": "acessorios",
+    "url": "https://www.mercadolivre.com.br/",
+    "fullName": "Garrafa Térmica Esportiva 1L",
+    "shortName": "Garrafa",
+    "price": "R$ 79,90",
+    "image": "",
+    "published": true,
+    "isPlaceholder": true
+  },
+  {
+    "id": "prod-5",
+    "category": "acessorios",
+    "url": "https://www.mercadolivre.com.br/",
+    "fullName": "Relógio Esportivo GPS Corrida",
+    "shortName": "Relógio",
+    "price": "R$ 299,00",
+    "image": "",
+    "published": true,
+    "isPlaceholder": true
+  }
+]
